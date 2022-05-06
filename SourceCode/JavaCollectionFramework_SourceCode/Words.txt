@@ -1,0 +1,11 @@
+Next write a Deck class. This class constructor should create a list of 52 Card objects, each
+representing a valid card in a deck of cards. The class should have a shuffle method that randomly
+shuffles the Card objects in the list. It should also have a deal method that deals a card from the
+deck. It does this by removing the Card object at the beginning of the list and returning a reference to
+that object.
+Next, write CardPlayer class. This class should keep a list of Card objects that have been dealt to it.
+This represents a hand of cards. A method named getCard should accept a reference to a Card
+object, which is added to the list. A method named showCards displays the Card objects in the list.
+Demonstrate these classes in an application that creates a Deck object, shuffles the cards it contains,
+and deals five cards from the Deck to a CardPlayer object. The CardPlayer should then display its
+cards.
