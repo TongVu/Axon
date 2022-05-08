@@ -41,9 +41,10 @@ public class Electronics extends Goods implements SalesRate{
 
     @Override
     public String toString() {
-        return "Electronics{" + super.toString() +
-                " warranty=" + warranty +
-                ", power=" + power +
+        return "Electronics{\n" +
+                super.toString() + "\n" +
+                "warranty = " + warranty + "\n" +
+                "power = " + power + "\n" +
                 '}';
     }
 

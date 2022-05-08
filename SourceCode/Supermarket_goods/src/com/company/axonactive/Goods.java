@@ -1,10 +1,11 @@
 package com.company.axonactive;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class Goods implements SalesRate{
     private String id;
-    private String goodsName = "xxx";
+    private String goodsName;
     private double price;
     private int stockUnit;
 
@@ -77,12 +78,10 @@ public abstract class Goods implements SalesRate{
 
     @Override
     public String toString() {
-        return "Goods{" +
-                "id='" + id + '\'' +
+        return "id='" + id + '\'' +
                 ", goodsName='" + goodsName + '\'' +
                 ", price=" + price +
-                ", stockUnit=" + stockUnit +
-                '}';
+                ", stockUnit=" + stockUnit;
     }
     @Override
     public String checkSalesRate(){

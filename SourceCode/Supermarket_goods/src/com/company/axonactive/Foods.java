@@ -2,12 +2,13 @@ package com.company.axonactive;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Foods extends Goods implements SalesRate {
     private String manufacturer;
-    private Date productionDate;
-    private Date expiredDate;
+    private Date productionDate = Calendar.getInstance().getTime();
+    private Date expiredDate = productionDate;
 
     public Foods(String id, String goodsName, double price, int stockUnit, String manufacturer, String productionDate, String expiredDate) throws ParseException {
         super(id, goodsName, price, stockUnit);
@@ -49,16 +50,19 @@ public class Foods extends Goods implements SalesRate {
 
     @Override
     public String toString() {
-        return "Foods{" + super.toString() +
-                " manufacturer='" + manufacturer + '\'' +
-                ", productionDate=" + productionDate +
-                ", expiredDate=" + expiredDate +
+        return "Foods{\n"  +
+                super.toString() + "\n" +
+                "manufacturer = " + manufacturer + "\n" +
+                "productionDate = " + productionDate + "\n" +
+                "expiredDate = " + expiredDate + "\n" +
                 '}';
     }
 
     @Override
     public String checkSalesRate() {
-        if (getStockUnit() > 0) {// and expiredDate < nowTime)
+
+        if (getStockUnit() > 0 ||
+            getExpiredDate().before(Calendar.getInstance().getTime()) ){// and expiredDate < nowTime)
             return "Hard to sell";
         } else
             return "No rate";
