@@ -1,0 +1,19 @@
+requirement:
+- evaluate average point of an interview with 3 evaluation points:
+programming, essay, interview in range 0 - 100
+A if average > 90
+B if average from 80 to < 90
+C if average from 70 to < 80
+D if average from 60 to < 70
+F if average < 60
+
+/InterviewGrade
+
+/Fields:
+    - programming
+    - essay
+    - interview
+
+/Methods
+    + average
+    + gradingAverage

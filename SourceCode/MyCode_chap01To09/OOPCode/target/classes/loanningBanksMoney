@@ -1,0 +1,20 @@
+requirement: check if customer is illegal to loan money from the bank.
+
+    - condition:
+        + salary >= 2000$ per year
+        + years that customer has been working at the company >= 2
+
+    - input:
+         + provide customer's contract to check the year he/she has been working
+
+
+/LoanMoney
+
+/Params:
+    - salary
+    - years
+
+/Methods:
+    - checkSalary
+    - check years
+    - isLegal

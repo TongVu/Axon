@@ -1,0 +1,12 @@
+requirement:
+let user check the price of the food [in range A B C],
+show ElementException if there is one.
+Food grading input is from the user.
+
+/cattlesFodder
+
+/Params:
+    -foodGrade
+
+/Methods:
+    -checkGrade

@@ -1,0 +1,7 @@
+Hello, this line is from a text file.
+Programming is tricky.
+I have to learn HTML, CSS, Javascript.
+I have to learn Java.
+I have to learn Spring Boot.
+I have to learn relational Database (like SQL, mySQL).
+Do I have to learn Git.
