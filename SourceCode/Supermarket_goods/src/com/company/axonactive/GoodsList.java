@@ -104,7 +104,7 @@ public class GoodsList {
         Ceramics cre2 = new Ceramics("1234", "CHECKING CERAMIC", 200, 52, "VIE", "05/05/2022");
         Ceramics cre3 = new Ceramics("5678", "CHECKING CERAMIC 2", 200, 65, "VIE", "26/04/2022");
 
-        goodsList.add(food1);
+        goodsList.remove(food1);
         goodsList.add(food2);
         goodsList.add(food3);
         goodsList.add(elec1);
