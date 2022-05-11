@@ -19,26 +19,26 @@ CREATE TABLE department(
 CREATE TABLE department_location(
 	id bigint NOT NULL PRIMARY KEY,
 	location varchar(100),
-	dept_id bigint
+	deptid bigint
 )
 
 
 -- Create Employee
 CREATE TABLE employee(
-	employee_id varchar(9) NOT NULL PRIMARY KEY,
+	employeeid varchar(9) NOT NULL PRIMARY KEY,
 	date_of_birth date NOT NULL,
 	first_name varchar(20) NOT NULL,
 	gender varchar(10) NOT NULL,
 	last_name varchar(20) NOT NULL,
 	middle_name varchar(20) NOT NULL,
 	salary int,
-	dept_id bigint NOT NULL
+	deptid bigint NOT NULL
 )
 
 
 -- Create Project
 CREATE TABLE project(
-	project_id bigint NOT NULL PRIMARY KEY,
+	projectid bigint NOT NULL PRIMARY KEY,
 	area varchar(100),
 	project_name varchar(100) NOT NULL,
 	managed_department bigint NOT NULL
@@ -49,8 +49,8 @@ CREATE TABLE project(
 CREATE TABLE assignment(
 	id bigint NOT NULL PRIMARY KEY,
 	number_of_hour int,
-	employee_id varchar(9) NOT NULL,
-	project_id bigint NOT NULL
+	employeeid varchar(9) NOT NULL,
+	projectid bigint NOT NULL
 )
 
 
@@ -62,27 +62,53 @@ CREATE TABLE relatives(
 	gender int NOT NULL,
 	phone_number varchar(255) NOT NULL,
 	relationship varchar(255) NOT NULL,
-	employee_id varchar(9) NOT NULL
+	employeeid varchar(9) NOT NULL
 )
 
 /*
-	RENAME
- */
-ALTER TABLE employee
-RENAME TO employees
+	2. ADD FOREIGN KEY
+*/
 
+-- FROM assignment TO project and employee
 ALTER TABLE assignment
-RENAME TO assignments
+ADD CONSTRAINT fk_employeeid -- to employee
+	FOREIGN KEY (employeeid)
+	REFERENCES employee(employeeid),
+ADD CONSTRAINT fk_projectid -- to project
+	FOREIGN KEY (projectid)
+	REFERENCES project(projectid)
 
-ALTER TABLE department
-RENAME TO departments
 
+
+-- FROM project to deparment
 ALTER TABLE project
-RENAME TO projects
+ADD CONSTRAINT fk_managed_department
+	FOREIGN KEY (managed_department)
+	REFERENCES department(departmentid)
 
+
+
+-- FROM department_location to deparment
+ALTER TABLE department_location
+ADD CONSTRAINT fk_deptid
+	FOREIGN KEY (deptid)
+	REFERENCES department(departmentid)
+
+
+
+-- FROM employee to deparment
+ALTER TABLE employee
+ADD CONSTRAINT fk_deptid
+	FOREIGN KEY (deptid)
+	REFERENCES department(departmentid)
+
+-- FROM relatives to employee
+ALTER TABLE relatives
+ADD CONSTRAINT fk_employeeid
+	FOREIGN KEY (employeeid)
+	REFERENCES employee(employeeid)
 
 /*
-	ADD DATA BEFORE CONSTRAINT
 	employe_id :_ (0001, 0002, .. 0020) increase by 1
 	department_id :_ (1010, 1020 .. 1100) increase by 10
 	project_id :_ (2010, 2020 .. 2100) increase by 10 has 10 records
@@ -90,16 +116,79 @@ RENAME TO projects
 	relatives_id:_ (10001, 10002, .. 10020)
 	
 */
+INSERT INTO department(
+	departmentid,
+	department_name,
+	start_date
+)
+VALUES 
+	(1010, 'IT', '2000/07/12'),
+	(1020, 'Sales', '2012/06/08'),
+	(1030, 'Hr', '2003/08/03'),
+	(1040, 'R&D', '2012/05/01'),
+	(1050, 'Customer Service', '2018/11/10'),
+	(1060, 'Finance', '2016/08/13'),
+	(1070, 'Accounting', '2021/12/14'),
+	(1080, 'Marketing', '2017/05/18'),
+	(1090, 'Administration', '2007/07/07'),
+	(1100, 'Media', '2015/05/20')
 
-INSERT INTO employees(
-	employee_id,
+
+
+
+
+INSERT INTO project(
+	projectid,
+	area,
+	project_name,
+	managed_department
+)
+VALUES 
+	(2010,  'New Orland',           'HELIOS', 1010),
+	(2020,  'New Jersey',           'REGENT', 1020),
+	(2030,    'Kentucky',            'COBRA', 1030),
+	(2040, 'Matsachuset',            'EAGLE', 1040),
+	(2050,     'Orlando',           'BEAVER', 1050),
+	(2060,      'Zurich',     'ALONELY WOLF', 1060), 
+	(2070,       'Basel',     'HAPPY POTATO', 1070),
+	(2080,     'Lucerne', 'SMILES FOR CHILD', 1080),
+	(2090,      'Geneva', 'YOU DONT KNOW JS', 1090),
+	(2100, 'Ho Chi Minh',     'NONITPROGRAM', 1100)
+
+
+
+
+INSERT INTO department_location(
+	id,
+	location,
+	deptid
+)
+VALUES 
+	(678, 'New York', 1010),
+	(679, 'New Orland', 1020),
+	(680, 'Ho Chi Minh', 1030),
+	(681, 'Singapore', 1040),
+	(682, 'Taiwan', 1050),
+	(683, 'Washington', 1060),
+	(684, 'L.A', 1070),
+	(685, 'Chicago', 1080),
+	(686, 'New Jersey', 1090),
+	(687, 'California', 1100)
+
+
+
+
+
+
+INSERT INTO employee(
+	employeeid,
 	date_of_birth,
 	first_name,
 	gender,
 	last_name,
 	middle_name,
 	salary,
-	dept_id
+	deptid
 )
 VALUES 
 			('0001', '1999/12/24',  'Linh',  'female',     'Vo',       'Van', 1000, 1010),
@@ -124,34 +213,7 @@ VALUES
             ('0020', '1994/10/04',  'Hanh',  'female', 'Nguyen',       'Thi', 1800, 1070)
 
 
-INSERT INTO assignments(
-	id,
-	number_of_hour,
-	employee_id,
-	project_id
-)
-VALUES 
-	(1011, 5000, '0001', 2010),
-	(1021, 5230, '0010', 2050),
-	(1031, 5011, '0020', 2070),
-	(1041, 4200, '0019', 2040),
-	(1051, 1454, '0007', 2030),
-	(1061, 6522, '0003', 2010),
-	(1071, 4604, '0001', 2090),
-	(1081, 5050, '0006', 2100),
-	(1091, 3100, '0015', 2050),
-	(1101, 5400, '0019', 2030),
-	(1111, 3600, '0018', 2050),
-	(1121, 1070, '0004', 2040),
-	(1131, 5150, '0006', 2020),
-	(1141, 5940, '0002', 2030),
-	(1151, 1560, '0013', 2090),
-	(1161, 1507, '0012', 2070),
-	(1171, 5006, '0016', 2080),
-	(1181, 1570, '0018', 2010),
-	(1191, 5410, '0017', 2020),
-	(1201, 6110, '0019', 2030),
-	(1211, 1580, '0011', 2040)
+
 
 INSERT INTO relatives(
 	id,
@@ -159,7 +221,7 @@ INSERT INTO relatives(
 	gender,
 	phone_number,
 	relationship,
-	employee_id
+	employeeid
 )
 VALUES 
 	(10001, 'John Harvard', 1, '0934120150','father', '0001'),
@@ -183,96 +245,36 @@ VALUES
 	(10019, 'King James', 1, '0929555888','father', '0019'),
 	(10020, 'Marrilin Monroe', 0, '0918538175','mother', '0017')
 
-INSERT INTO departments(
-	departmentid,
-	department_name,
-	start_date
-)
-VALUES 
-	(1010, 'IT', '2000/07/12'),
-	(1020, 'Sales', '2012/06/08'),
-	(1030, 'Hr', '2003/08/03'),
-	(1040, 'R&D', '2012/05/01'),
-	(1050, 'Customer Service', '2018/11/10'),
-	(1060, 'Finance', '2016/08/13'),
-	(1070, 'Accounting', '2021/12/14'),
-	(1080, 'Marketing', '2017/05/18'),
-	(1090, 'Administration', '2007/07/07'),
-	(1100, 'Media', '2015/05/20')
 
 
-INSERT INTO projects(
-	project_id,
-	area,
-	project_name,
-	managed_department
-)
-VALUES 
-	(2010, 'IT', '2000/07/12', 1010),
-	(2020, 'Sales', '2012/06/08',1020),
-	(2030, 'Hr', '2003/08/03',1030),
-	(2040, 'R&D', '2012/05/01',1040),
-	(2050, 'Customer Service', '2018/11/10',1050),
-	(2060, 'Finance', '2016/08/13',1060),
-	(2070, 'Accounting', '2021/12/14',1070),
-	(2080, 'Marketing', '2017/05/18',1080),
-	(2090, 'Administration', '2007/07/07',1090),
-	(2100, 'Media', '2015/05/20',1100)
 
-	
-
-INSERT INTO department_location(
+INSERT INTO assignment(
 	id,
-	location,
-	dept_id
+	number_of_hour,
+	employeeid,
+	projectid
 )
 VALUES 
-	(678, 'New York', 1010),
-	(679, 'New Orland', 1020),
-	(680, 'Ho Chi Minh', 1030),
-	(681, 'Singapore', 1040),
-	(682, 'Taiwan', 1050),
-	(683, 'Washington', 1060),
-	(684, 'L.A', 1070),
-	(685, 'Chicago', 1080),
-	(686, 'New Jersey', 1090),
-	(687, 'California', 1100)
+	(1011, 5000, '0001', 2010),
+	(1021, 5230, '0002', 2030),
+	(1031, 5011, '0003', 2030),
+	(1041, 4200, '0004', 2040),
+	(1051, 1454, '0005', 2050),
+	(1061, 6522, '0006', 2100),
+	(1071, 4604, '0007', 2100),
+	(1081, 5050, '0008', 2040),
+	(1091, 3100, '0009', 2070),
+	(1101, 5400, '0010', 2080),
+	(1111, 3600, '0011', 2010),
+	(1121, 1070, '0012', 2020),
+	(1131, 5150, '0013', 2060),
+	(1141, 5940, '0014', 2070),
+	(1151, 1560, '0015', 2060),
+	(1161, 1507, '0016', 2010),
+	(1171, 5006, '0017', 2020),
+	(1181, 1570, '0018', 2090),
+	(1191, 5410, '0019', 2070),
+	(1201, 6110, '0020', 2070)
 	
-/*
-	2. ADD FOREIGN KEY
-*/
-
--- FROM assignment TO project and employee
-ALTER TABLE assignment
-ADD CONSTRAINT fk_employee_id -- to employee
-	FOREIGN KEY (employee_id)
-	REFERENCES employee(employee_id),
-ADD CONSTRAINT fk_project_id -- to project
-	FOREIGN KEY (project_id)
-	REFERENCES project(project_id)
-
-
-
--- FROM project to deparment
-ALTER TABLE project
-ADD CONSTRAINT fk_department_id
-	FOREIGN KEY (managed_department)
-	REFERENCES department(departmentid)
-
-
-
--- FROM department_location to deparment
-ALTER TABLE department_location
-ADD CONSTRAINT fk_dept_id
-	FOREIGN KEY (dept_id)
-	REFERENCES department(departmentid)
-
-
-
--- FROM employee to deparment
-ALTER TABLE employee
-ADD CONSTRAINT fk_dept_id
-	FOREIGN KEY (dept_id)
-	REFERENCES department(departmentid)
 
 
