@@ -1,42 +1,27 @@
 package com.axonactive.programmingChallenges.problem1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Company {
     private String name;
-    List<AgencyLevelOne> listOfAllDlc1 = new ArrayList<>();
-    List<AgencyLevelTwo> listOfAllDlc2 = new ArrayList<>();
+    List<AgencyOne> listOfAgencyOne = new ArrayList<>();
+    List<AgencyTwo> listOfAgencyTwo = new ArrayList<>();
+
 
     public Company() {
-        AgencyLevelOne agen1 = new AgencyLevelOne("123", "one", 12, 500000);
-        AgencyLevelOne agen2 = new AgencyLevelOne("343", "two", 8, 500000);
-        AgencyLevelOne agen3 = new AgencyLevelOne("456", "three", 07, 500000);
+        AgencyOne agenOne = new AgencyOne("123", "One", 8);
+        AgencyOne agenTwo = new AgencyOne("234", "Two", 10);
+        AgencyOne agenThree = new AgencyOne("345", "Three", 12);
+        AgencyOne agenFour = new AgencyOne("456", "Four", 15);
+        listOfAgencyOne.add(agenOne);
+        listOfAgencyOne.add(agenTwo);
+        listOfAgencyOne.add(agenThree);
+        listOfAgencyOne.add(agenFour);
 
-        agen1.setComission();
-        agen2.setComission();
-        agen3.setComission();
-
-        listOfAllDlc1.add(agen1);
-        listOfAllDlc1.add(agen2);
-        listOfAllDlc1.add(agen3);
-
-        AgencyLevelTwo agen4 = new AgencyLevelTwo("789", "four", 12, 1200000, 50000000d );
-        AgencyLevelTwo agen5 = new AgencyLevelTwo("451", "five", 20, 1200000, 12000000d );
-        AgencyLevelTwo agen6 = new AgencyLevelTwo("124", "six", 21, 1200000, 450000000d );
-
-        agen4.setBonus();
-        agen5.setBonus();
-        agen6.setBonus();
-
-        listOfAllDlc2.add(agen4);
-        listOfAllDlc2.add(agen5);
-        listOfAllDlc2.add(agen6);
-    }
-
-    public Company(String name) {
-        this.name = name;
+        AgencyTwo agenFive = new AgencyTwo("567", "Five", 9, 1_000_000, 10_000_000);
+        AgencyTwo agenSix = new AgencyTwo("678", "Six", 20, 1_200_000, 40_000_000);
+        listOfAgencyTwo.add(agenFive);
+        listOfAgencyTwo.add(agenSix);
     }
 
     public String getName() {
@@ -53,232 +38,193 @@ public class Company {
         setName(input.nextLine());
     }
 
-    public void inputDlc1() {
+
+    public void addAgencyOne() {
+        System.out.println();
         Scanner input = new Scanner(System.in);
-        AgencyLevelOne newDlc1 = new AgencyLevelOne();
 
-        System.out.print("Input agency id: ");
-        newDlc1.setId(input.nextLine());
+        AgencyOne newAgency = new AgencyOne();
+        System.out.print("Enter agency's id: ");
+        newAgency.setId(input.nextLine());
 
-        System.out.print("Input agency name: ");
-        newDlc1.setName(input.nextLine());
+        System.out.print("Enter agency's name: ");
+        newAgency.setName(input.nextLine());
 
-        int year;
+        int yearsCollaborated = 0;
         do {
-            System.out.print("Input year coorperated (postitive number): ");
-            year = input.nextInt();
-            newDlc1.setYearCollaborated(year);
+            if(yearsCollaborated < 0) System.out.println("Year collaborated at least is 0");
+            System.out.print("Enter year collaborated: ");
+            yearsCollaborated = input.nextInt();
             input.nextLine();
-        } while (year <= 0);
+            newAgency.setYearCollaborated(yearsCollaborated);
+        } while (yearsCollaborated < 0);
 
-        newDlc1.setComission();
-        listOfAllDlc1.add(newDlc1);
+        listOfAgencyOne.add(newAgency);
     }
 
-    public void inputDlc2() {
+    public void addAgencyTwo() {
+        System.out.println();
         Scanner input = new Scanner(System.in);
-        AgencyLevelTwo newDlc2 = new AgencyLevelTwo();
 
-        System.out.print("Input agency id: ");
-        newDlc2.setId(input.nextLine());
+        AgencyTwo newAgency = new AgencyTwo();
+        System.out.print("Enter agency's id: ");
+        newAgency.setId(input.nextLine());
 
-        System.out.print("Input agency name: ");
-        newDlc2.setName(input.nextLine());
+        System.out.print("Enter agency's name: ");
+        newAgency.setName(input.nextLine());
 
-        int year;
+        int yearsCollaborated = 0;
         do {
-            System.out.print("Input year coorperated (postitive number): ");
-            year = input.nextInt();
-            newDlc2.setYearCollaborated(year);
+            if(yearsCollaborated < 0) System.out.println("Year collaborated at least is 0");
+            System.out.print("Enter year collaborated: ");
+            yearsCollaborated = input.nextInt();
             input.nextLine();
-        } while (year <= 0);
+            newAgency.setYearCollaborated(yearsCollaborated);
+        } while (yearsCollaborated < 0);
 
-        double basicComission = 0;
+        double basicDiscount = 0;
+
         do {
-            System.out.print("Input basic comission (positive number): ");
-            basicComission = input.nextDouble();
-            newDlc2.setBasicComission(basicComission);
+            if(basicDiscount < 0) System.out.println("Basic discount have to be greater than 0");
+            System.out.print("Enter basic discount: ");
+            basicDiscount = input.nextDouble();
             input.nextLine();
-        } while (basicComission <= 0);
+            newAgency.setBasicDiscount(basicDiscount);
+        } while (basicDiscount < 0);
 
-        newDlc2.setComission();
-        newDlc2.setBonus();
-        listOfAllDlc2.add(newDlc2);
+
+        double salesFigure = 0;
+        do {
+            if(salesFigure < 0) System.out.println("Sales figure is a positive number");
+            System.out.print("Enter sales figures: ");
+            salesFigure = input.nextDouble();
+            input.nextLine();
+            newAgency.setSalesFigure(salesFigure);
+        } while (salesFigure < 0);
+
+        listOfAgencyTwo.add(newAgency);
     }
 
-    public void inputAllDlc1() {
+    public void inputAllAgenciesOne(){
+        System.out.println("====================== ADD AGENCIES ONE ======================");
         Scanner input = new Scanner(System.in);
-        int numberOfAgencies;
+        int numberOfAgency = 0;
 
         do {
-            System.out.print("Input number of agency level 1: ");
-            numberOfAgencies = input.nextInt();
-        } while (numberOfAgencies < 0);
+            if(numberOfAgency < 0) System.out.println("Number of agency need to be a positive number");
+            System.out.print("Input number of agency one: ");
+            numberOfAgency = input.nextInt();
+        } while(numberOfAgency < 0);
 
-        for (int i = 0; i < numberOfAgencies; i++) {
-            System.out.println("AGENCY " + (i + 1));
-            inputDlc1();
+
+        for (int i = 0; i < numberOfAgency; i++) {
+            System.out.println("Agency number " + (i + 1));
+            addAgencyOne();
         }
     }
 
-    public void inputAllDlc2() {
+    public void inputAllAgenciesTwo(){
+        System.out.println("====================== ADD AGENCIES TWO ======================");
         Scanner input = new Scanner(System.in);
-        int numberOfAgencies;
+        int numberOfAgency = 0;
 
         do {
-            System.out.print("Input number of agency level 2: ");
-            numberOfAgencies = input.nextInt();
-        } while (numberOfAgencies < 0);
+            if(numberOfAgency < 0) System.out.println("Number of agency need to be a positive number");
+            System.out.print("Input number of agency two: ");
+            numberOfAgency = input.nextInt();
+        } while(numberOfAgency < 0);
 
-        for (int i = 0; i < numberOfAgencies; i++) {
-            System.out.println("AGENCY " + (i + 1));
-            inputDlc2();
+
+        for (int i = 0; i < numberOfAgency; i++) {
+            System.out.println("Agency number " + (i + 1));
+            addAgencyTwo();
         }
     }
 
-    public double showTotalComissionOfAllDlc1() {
-        System.out.println("===========================================");
-        double totalComission = 0;
+    public double showAllDiscountFromAgenciesOne(){
+        double totalDiscount = 0;
+        for (AgencyOne agency: listOfAgencyOne)
+            totalDiscount = +agency.getDiscount();
 
-        for (AgencyLevelOne agency : listOfAllDlc1) {
-            totalComission += agency.getComission();
-        }
-        return totalComission;
+        return totalDiscount;
     }
 
-    public double showTotalBonusOfAllDlc2() {
-        System.out.println("===========================================");
+    public double showAllBonusFromAgenciesTwo(){
         double totalBonus = 0;
-
-        for (AgencyLevelTwo agency : listOfAllDlc2) {
+        for (AgencyTwo agency : listOfAgencyTwo)
             totalBonus += agency.getBonus();
-        }
 
         return totalBonus;
     }
 
-    public double showHighestComissionOfDlc1() {
-        System.out.println("===========================================");
-        double max = 0;
-        for (AgencyLevelOne agency :
-                listOfAllDlc1) {
-            if (agency.getComission() > max) max = agency.getBasicComission();
+    public AgencyOne showHighestDiscountFromAgenciesOne(){
+        double max = listOfAgencyOne.get(0).getDiscount();
+        AgencyOne highestDiscountedAgency = new AgencyOne();
+        for (AgencyOne agency :
+                listOfAgencyOne) {
+            if (max < agency.getDiscount()) {
+                max = agency.getDiscount();
+                highestDiscountedAgency = agency;
+            }
         }
-        return max;
+
+        return highestDiscountedAgency;
     }
 
-    public double calculateTotalComissionOfAllDlc1AndDlc2() {
-        System.out.println("===========================================");
-        double totalComissionOfAllAgencies = 0;
-        // calculate total for all dlc1
-        for (AgencyLevelOne agency :
-                listOfAllDlc1) {
-            totalComissionOfAllAgencies += agency.getComission();
-        }
+    public double calculateDiscountFromAgenciesOneAndTwo(){
+        double totalDiscount = 0;
 
-        // calculate total for all dlc2
-        for (AgencyLevelTwo agency :
-                listOfAllDlc2) {
-            totalComissionOfAllAgencies += agency.getComission();
-        }
+        for (AgencyOne agen : listOfAgencyOne)
+            totalDiscount += agen.getDiscount();
 
-        return totalComissionOfAllAgencies;
+        for (AgencyTwo agen : listOfAgencyTwo)
+            totalDiscount += agen.getDiscount();
+
+        return totalDiscount;
     }
 
-    public void showInfoOfThreeDlHasHighestComission() {
-        System.out.println("===========================================");
-        List<AgencyLevelOne> dupListOfAllDlc1 = new ArrayList<>();
-        dupListOfAllDlc1.addAll(listOfAllDlc1);
+    public void showThreeMostDiscountFromAllAgencies(){
+        System.out.println("=================== THREE MOST DISCOUNTED AGENCIES");
+        List<Double> discountList = new ArrayList<>();
 
-        List<AgencyLevelOne> threeHighestOfAgency1 = new ArrayList<>();
-        double firstListOne = dupListOfAllDlc1.get(0).getComission(),
-                secondListOne = dupListOfAllDlc1.get(0).getComission(),
-                thirdListOne = dupListOfAllDlc1.get(0).getComission();
-
-        //find max, add to list highest, delete that agency, repeat
-        for (int i = 0; i < 3; i++) {
-            for (AgencyLevelOne agency : dupListOfAllDlc1) {
-                if (firstListOne < agency.getComission()) firstListOne = agency.getComission(); // found max
-            }
-            for (AgencyLevelOne agency: dupListOfAllDlc1) {
-                if(secondListOne < agency.getComission() &&
-                        agency.getComission() != firstListOne){
-                    secondListOne = agency.getComission();
-                }
-            }
-
-            for (AgencyLevelOne agency: dupListOfAllDlc1) {
-                if(thirdListOne < agency.getComission() &&
-                        agency.getComission() != firstListOne &&
-                        agency.getComission() != secondListOne){
-                    thirdListOne = agency.getComission();
-                }
-            }
+        for (AgencyOne agency: listOfAgencyOne) {
+            discountList.add(agency.getDiscount());
+        }
+        for (AgencyTwo agency : listOfAgencyTwo) {
+            discountList.add(agency.getDiscount());
         }
 
-        List<AgencyLevelTwo> dupListOfAllDlc2 = new ArrayList<>(listOfAllDlc2);
-        double firstListTwo = dupListOfAllDlc2.get(0).getComission(),
-                secondListTwo = dupListOfAllDlc2.get(0).getComission(),
-                thirdListTwo = dupListOfAllDlc2.get(0).getComission();
+        Collections.reverse(discountList);
 
-        for (int i = 0; i < 3; i++) {
-            for (AgencyLevelTwo agency : dupListOfAllDlc2) {
-                if (firstListTwo < agency.getComission()) firstListTwo = agency.getComission(); // found max
-            }
-            for (AgencyLevelTwo agency: dupListOfAllDlc2) {
-                if(secondListTwo < agency.getComission() &&
-                        agency.getComission() != firstListTwo){
-                    secondListTwo = agency.getComission();
+        for (int i = 0;
+             i < (discountList.size() > 3 ? 3 : discountList.size())
+                ; i++) {
+            for (int j = 0; j < listOfAgencyOne.size(); j++) {
+                if(discountList.get(i) == listOfAgencyOne.get(j).getDiscount()){
+                    System.out.println(listOfAgencyOne.get(j));
                 }
             }
-
-            for (AgencyLevelTwo agency: dupListOfAllDlc2) {
-                if(thirdListTwo < agency.getComission() &&
-                        agency.getComission() != firstListTwo &&
-                        agency.getComission() != secondListTwo){
-                    thirdListTwo = agency.getComission();
+            for (int j = 0; j < listOfAgencyTwo.size(); j++) {
+                if(discountList.get(i) == listOfAgencyTwo.get(j).getDiscount()){
+                    System.out.println(listOfAgencyTwo.get(j));
                 }
             }
-        }
-
-        List<Agency> highestCommissionFromAgencies = new ArrayList<>();
-
-        for (AgencyLevelOne agen : listOfAllDlc1) {
-            if(agen.getComission() == firstListOne) highestCommissionFromAgencies.add(agen);
-
-            if(agen.getComission() == secondListOne) highestCommissionFromAgencies.add(agen);
-
-            if(agen.getComission() == thirdListOne) highestCommissionFromAgencies.add(agen);
-        }
-
-        for (AgencyLevelTwo agen : listOfAllDlc2) {
-            if(agen.getComission() == firstListTwo) highestCommissionFromAgencies.add(agen);
-
-            if(agen.getComission() == secondListTwo) highestCommissionFromAgencies.add(agen);
-
-            if(agen.getComission() == thirdListTwo) highestCommissionFromAgencies.add(agen);
         }
     }
 
-    public List<Agency> showListOfAllDlCoorperatedFromTenToTwentyYear() {
-        System.out.println("===========================================");
-        List<Agency> listOfAgencyFromTenToTwentyYear = null;
+    public void showAllAgenciesHaveYearCollaboratedFromTenToTwentyYears(){
+        System.out.println("=================== LIST OF AGENCY ONE'VE BEEN COLLABORATING FROM 10 TO 20 YEARS");
+        for (AgencyOne agen : listOfAgencyOne) {
+            if(agen.getYearCollaborated() >= 10 &&
+                agen.getYearCollaborated() <= 20) System.out.println(agen);
 
-        for (AgencyLevelOne agency :
-                listOfAllDlc1) {
-            if (agency.getYearCollaborated() >= 10 &&
-                    agency.getYearCollaborated() <= 20) {
-                listOfAgencyFromTenToTwentyYear.add(agency);
-            }
-        }
-        for (AgencyLevelTwo agency :
-                listOfAllDlc2) {
-            if (agency.getYearCollaborated() >= 10 &&
-                    agency.getYearCollaborated() <= 20) {
-                listOfAgencyFromTenToTwentyYear.add(agency);
-            }
         }
 
-        return listOfAgencyFromTenToTwentyYear;
+        System.out.println("=================== LIST OF AGENCY TWO'VE BEEN COLLABORATING FROM 10 TO 20 YEARS");
+        for (AgencyTwo agen : listOfAgencyTwo) {
+            if(agen.getYearCollaborated() >= 10 &&
+                    agen.getYearCollaborated() <= 20) System.out.println(agen);
+
+        }
     }
 }

@@ -7,23 +7,16 @@ public class Demo {
         Company com = new Company();
 
         com.inputCompanyInfo();
-//        com.inputAllDlc1();
-//        com.inputAllDlc2();
+        com.inputAllAgenciesOne();
+        com.inputAllAgenciesTwo();
 
-//        System.out.println("Total Comission of all Agencies 1: " + String.format("%.0f", com.showTotalComissionOfAllDlc1()));
+        System.out.println("All discount from agencies one: " + com.showAllDiscountFromAgenciesOne());
+        System.out.printf("All discount from agencies one: %.3f" , com.showAllBonusFromAgenciesTwo());
+        System.out.println(com.showHighestDiscountFromAgenciesOne());
 
-//        System.out.println("Total bonus of all Agencies 2: " + String.format("%.0f", com.showTotalBonusOfAllDlc2())) ;
+        System.out.printf("Total discount from all agencies: %.3f" , com.calculateDiscountFromAgenciesOneAndTwo());
 
-//        System.out.println("Total Comission of all agencies: " + com.calculateTotalComissionOfAllDlc1AndDlc2());
-
-
-        com.showInfoOfThreeDlHasHighestComission();
-
-//        List<Agency> listFromTenToTwentyYear =
-//                com.showListOfAllDlCoorperatedFromTenToTwentyYear();
-//        for (Agency agency :
-//                listFromTenToTwentyYear) {
-//            System.out.println(agency);
-//        }
+        com.showThreeMostDiscountFromAllAgencies();
+        com.showAllAgenciesHaveYearCollaboratedFromTenToTwentyYears();
     }
 }

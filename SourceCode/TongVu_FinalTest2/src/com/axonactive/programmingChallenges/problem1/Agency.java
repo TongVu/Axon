@@ -4,18 +4,25 @@ public abstract class Agency {
     private String id;
     private String name;
     private int yearCollaborated;
-    private double basicComission;
-    private double comission;
+    private double basicDiscount;
+    private double discount;
+
+    public Agency(String id, String name, int yearCollaborated, double basicDiscount) {
+        this.id = id;
+        this.name = name;
+        this.yearCollaborated = yearCollaborated;
+        this.basicDiscount = basicDiscount;
+        this.discount = basicDiscount * yearCollaborated * 0.2;
+    }
 
     public Agency() {
     }
 
-    public Agency(String id, String name, int yearCollaborated, double basicComission) {
+    public Agency(String id, String name, int yearCollaborated) {
         this.id = id;
         this.name = name;
         this.yearCollaborated = yearCollaborated;
-        this.basicComission = basicComission;
-        this.comission = comission;
+        this.discount = basicDiscount * yearCollaborated * 0.2;
     }
 
     public String getId() {
@@ -38,30 +45,33 @@ public abstract class Agency {
         return yearCollaborated;
     }
 
-    public void setYearCollaborated(int yearCollaborated) { this.yearCollaborated = yearCollaborated; }
-
-    public double getBasicComission() {
-        return basicComission;
+    public void setYearCollaborated(int yearCollaborated) {
+        this.yearCollaborated = yearCollaborated;
     }
 
-    public void setBasicComission(double basicComission) {
-        this.basicComission = basicComission;
+    public double getBasicDiscount() {
+        return basicDiscount;
     }
 
-    public double getComission() {
-        return comission;
+    public void setBasicDiscount(double basicDiscount) {
+        this.basicDiscount = basicDiscount;
     }
 
-    public void setComission() {
-        this.comission =  basicComission * yearCollaborated * 0.2;
+    public double getDiscount() {
+        return discount;
     }
+
+    public void setDiscount() {
+        this.discount = basicDiscount * yearCollaborated * 0.2;
+    }
+
+
 
     @Override
     public String toString() {
-        return "id=" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", yearCoorperated=" + yearCollaborated +
-                ", basicComission=" + basicComission +
-                ", comission=" + comission + "\n";
+        return "id = " + id + '\n' +
+                "name = " + name + '\n' +
+                "yearCollaborated = " + yearCollaborated + "\n"+
+                "discount = " + discount ;
     }
 }
