@@ -316,7 +316,7 @@ public class MyDate {
                 dayNumber != 1) {
             dayNumber--;
             if (dayNumber < 10) {
-                dayToShow = "0" + String.valueOf(dayNumber);
+                dayToShow = "0" + dayNumber;
             } else dayToShow = String.valueOf(dayNumber);
         }
         if (monthNumber == 2
@@ -329,7 +329,7 @@ public class MyDate {
             dayNumber--;
 
             if (dayNumber < 10) {
-                dayToShow = "0" + String.valueOf(dayNumber);
+                dayToShow = "0" + dayNumber;
             } else dayToShow = String.valueOf(dayNumber);
 
         }
