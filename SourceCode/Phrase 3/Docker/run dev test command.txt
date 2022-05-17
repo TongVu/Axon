@@ -1,0 +1,47 @@
+INSTALL COMMAND FOR DEV SERVER
+
+docker run -it --name dev-server --restart unless-stopped -e TZ=Asia/Ho_Chi_Minh -p 9990:9990 -p 8080:8080 -v /etc/localtime:/etc/localtime -v /opt:/opt/jboss/wildfly/standalone/log -v /opt/apps/shield/wildfly-dev/deploy:/opt/jboss/wildfly/standalone/tmp wildfly-server:v1
+
+//add user pass for dev management port
+docker exec -it dev-server /bin/bash
+/opt/jboss/wildfly/bin/add-user.sh root root
+exit
+
+or /opt/jboss/wildfly/bin/add-user.sh
+then input user name and passwork following the question.
+
+
+Create postgres container
+docker run --name my-postgress --restart unless-stopped -e POSTGRES_DB=my-wfh-db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=aavn@123 -p 5432:5432 postgres:13.3-alpine
+
+
+INSTALL C	R TEST SERVER
+
+docker run -it --name test-server --restart unless-stopped -e TZ=Asia/Ho_Chi_Minh -p 9800:9800 -p 8800:8080 -v /etc/localtime:/etc/localtime -v /opt/apps/shield/wildfly-test/var/log:/opt/jboss/wildfly/standalone/log -v /opt/apps/shield/wildfly-test/deploy:/opt/jboss/wildfly/standalone/tmp wildfly-server:v1
+
+//add user pass for test management port
+docker exec -it test-server /bin/bash
+/opt/jboss/wildfly/bin/add-user.sh root root
+exit
+
+//change management port for test-server
+docker exec -it --user root test-server /bin/bash
+cd wildflt/standalone/configuration
+apt-get update
+apt-get install nano
+nano standalone.xml
+ctrl-w to find 'jboss.management.http.port'  change jboss.management.http.port:9990 to jboss.management.http.port:9800
+ctrl-x to save and exit
+exit
+docker restart test-server
+
+//to view a log file in a docker container
+docker logs -f 0df65bc83ff5 --tail 1000
+
+MOVE IMAGES TO LOCAL
+docker save -o wildfly-server.tar wildfly-server:v1 
+# wildfly-server.tar: Name of file
+# wildfly-server:v1 [name of image]:[version] 
+
+mv wildfly-server.tar /opt/apps/shield
+# Move file to local 

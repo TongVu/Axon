@@ -1,0 +1,35 @@
+package com.axonactive.demo.service.impl;
+
+import com.axonactive.demo.entity.Department;
+import com.axonactive.demo.entity.DepartmentLocation;
+import com.axonactive.demo.service.DepartmentLocationService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.webservices.client.WebServiceClientTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode=DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+class DepartmentLocationServiceImplTest {
+    @Autowired
+    DepartmentLocationService departmentLocationService;
+
+    @Test
+    void getAll_shouldReturnNoData_whenTableJustCreated() {
+        List<DepartmentLocation> departmentLocations = departmentLocationService.getAll();
+        assertEquals(0, departmentLocations.size());
+    }
+
+    @Test
+    void testCreateDepartmentByBuilder(){
+        //DepartmentLocation departmentLoc = DepartmentLocation.builder().department()
+    }
+}
