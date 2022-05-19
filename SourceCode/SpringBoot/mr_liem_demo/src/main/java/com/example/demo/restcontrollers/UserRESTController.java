@@ -35,10 +35,7 @@ public class UserRESTController {
 	 */
 	@GetMapping("/list")
 	public List<User> getAll() {
-		
 		return userRepository.findAll();
-		
-		
 	}
 
 	@GetMapping("/get/{id}")
@@ -77,8 +74,10 @@ public class UserRESTController {
 	public Map<String, Boolean> delete(@PathVariable(value = "id") long userId) throws Exception {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found: " + userId));
+
 		userRepository.delete(user);
 		Map<String, Boolean> response = new HashMap<>();
+
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}

@@ -1,7 +1,6 @@
-package com.axonactive.demo.services.Impl;
+package com.axonactive.demo.services;
 
 import com.axonactive.demo.entities.Department;
-import com.axonactive.demo.services.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,22 +9,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.persistence.Entity;
 import java.time.LocalDate;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @RequiredArgsConstructor
 @ExtendWith(SpringExtension.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class DepartmentServiceImpTest {
-
+class DepartmentServiceTest {
     @Autowired
     DepartmentService departmentService;
 
     private Department newDep = Department.builder()
-            .id(1L)
             .departmentName("Hr")
             .startDate(LocalDate.of(2003, 05, 15))
             .build();
@@ -52,6 +49,13 @@ class DepartmentServiceImpTest {
     @Test
     void findDepartmentById_shouldReturnData_whenGivenDepartmentId() {
         departmentService.saveDepartment(newDep);
-        assertEquals(newDep, departmentService.findDepartmentById(newDep.getId()).get());
+        assertEquals(newDep.getId(), departmentService.findDepartmentById(newDep.getId()).get().getId());
+    }
+
+    @Test
+    void findDepartmentById_shouldReturnNoData_whenGivenDepartmentIdNotFounded() {
+        departmentService.saveDepartment(newDep);
+        departmentService.deleteDepartmentById(newDep.getId());
+        assertEquals(Optional.empty(), departmentService.findDepartmentById(newDep.getId()));
     }
 }

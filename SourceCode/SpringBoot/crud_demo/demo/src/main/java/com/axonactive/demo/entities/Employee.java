@@ -1,8 +1,6 @@
 package com.axonactive.demo.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,12 +10,13 @@ import java.time.LocalDate;
 
 @Builder
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Table(name = "employees")
 public class Employee {
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -40,8 +39,7 @@ public class Employee {
     @Size(min = 2, max = 20)
     private String lastName;
 
-    @NotNull
-    @Size(min = 2, max = 20)
+    @Size(max = 20)
     private String middleName;
 
     @NotNull

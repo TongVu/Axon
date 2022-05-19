@@ -2,6 +2,7 @@ package com.axonactive.demo.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.bytebuddy.description.field.FieldDescription;
 
@@ -10,11 +11,11 @@ import javax.validation.constraints.NotNull;
 
 @Builder
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "assignments")
 public class Assignment {
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

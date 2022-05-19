@@ -5,8 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Date;
 import java.time.LocalDate;
+
 
 @Data
 @Builder
@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @Table(name = "departments")
 public class Department {
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

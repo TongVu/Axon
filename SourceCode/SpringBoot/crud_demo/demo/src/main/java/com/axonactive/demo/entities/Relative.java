@@ -1,8 +1,6 @@
 package com.axonactive.demo.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,12 +8,13 @@ import javax.validation.constraints.Size;
 
 @Builder
 @Entity
+@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "relatives")
 public class Relative {
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
