@@ -52,6 +52,8 @@ class EmployeeServiceTest {
                 .salary(2400)
                 .department(newDep)
                 .build();
+
+        employeeService.saveEmployee(newEmp);
     }
 
     @Test
@@ -61,14 +63,12 @@ class EmployeeServiceTest {
 
     @Test
     void getAllEmployee_shouldReturnData_whenTableHasData() {
-        employeeService.saveEmployee(newEmp);
 
         assertEquals(newEmp.getId(), employeeService.getAllEmployee().get(0).getId());
     }
 
     @Test
     void saveEmployee_shouldInsertDataToTable_whenGivenEmployee() {
-        employeeService.saveEmployee(newEmp);
 
         assertEquals(1, employeeService.getAllEmployee().size());
     }
@@ -76,7 +76,6 @@ class EmployeeServiceTest {
 
     @Test
     void deleteEmployee_shouldReturnZero_whenTableDeletedGivenId() {
-        employeeService.saveEmployee(newEmp);
         employeeService.deleteEmployeeById(newEmp.getId());
 
         assertEquals(0, employeeService.getAllEmployee().size());
@@ -84,7 +83,6 @@ class EmployeeServiceTest {
 
     @Test
     void findEmployeeById_shouldReturnNull_whenGivenIdNotFounded() {
-        employeeService.saveEmployee(newEmp);
         employeeService.deleteEmployeeById(newEmp.getId());
 
         assertEquals(Optional.empty(), employeeService.findEmployeeById(newEmp.getId()));
@@ -92,44 +90,42 @@ class EmployeeServiceTest {
 
     @Test
     void findEmployeeByFirstNameLike_shouldReturnZero_whenNoEmployeeHasNameLikeThat(){
-        employeeService.saveEmployee(newEmp);
         assertEquals(0, employeeService.findEmployeeByFirstNameLike("KL").size());
     }
 
     @Test
     void findEmployeeByFirstNameLike_shouldReturnEmployee_whenHaveEmployeeHaveNameLikeThat(){
-        employeeService.saveEmployee(newEmp);
         assertEquals(1, employeeService.findEmployeeByFirstNameLike("Tong").size());
     }
 
     @Test
     void findEmployeeByFirstNameLikeAndLastNameLike_shouldReturnNoData_whenNoEmployeeHasNameLikeThat(){
-        employeeService.saveEmployee(newEmp);
         assertEquals(0, employeeService.findEmployeeByFirstNameLikeAndLastNameLike("Ying", "Yang").size());
     }
 
     @Test
     void findEmployeeByFirstNameLikeAndLastNameLike_shouldReturnData_whenHasEmployeeHaveNameLikeThat(){
-        employeeService.saveEmployee(newEmp);
         assertEquals(1, employeeService.findEmployeeByFirstNameLikeAndLastNameLike("%o%", "%u%").size());
     }
 
     @Test
     void findEmployeeByFirstNameIgnoreCaseLike_shouldReturnData_WhenHasEmployeeHaveNameLikeThat(){
-        employeeService.saveEmployee(newEmp);
         assertEquals(1, employeeService.findEmployeeByFirstNameIgnoreCaseLike("g").size());
     }
 
     @Test
     void findEmployeeByDateOfBirthBefore_shouldReturnNoData_whenNotFounded() {
-        employeeService.saveEmployee(newEmp);
 
         assertNotNull(employeeService.findEmployeeByDateOfBirthBefore(1995, 3, 10).size());
     }
 
     @Test
     void findEmployeeByDateOfBirthBefore_shouldReturnData_whenFounded(){
-        employeeService.saveEmployee(newEmp);
         assertEquals(1, employeeService.findEmployeeByDateOfBirthBefore(1995,4,27).size());
+    }
+
+    @Test
+    void findEmployeeByAgeLessThan_shouldReturnData_whenFounded(){
+        assertEquals(1, employeeService.findEmployeeByAgeLessThan(30).size());
     }
 }

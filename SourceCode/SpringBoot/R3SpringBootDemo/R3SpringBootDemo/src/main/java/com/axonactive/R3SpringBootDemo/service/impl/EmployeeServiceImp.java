@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,5 +61,14 @@ public class EmployeeServiceImp implements EmployeeService {
         return employeeRepository.findEmployeeByDateOfBirthBefore(date);
     }
 
+    @Override
+    public List<Employee> findEmployeeByAgeLessThan(Integer age){
+        List<Employee> satisfiedEmployeesHaveAgeLessThan = new ArrayList<>();
+        employeeRepository.findAll().forEach(employee -> {
+           if(employee.getAge() < age) satisfiedEmployeesHaveAgeLessThan.add(employee);
+        });
+
+        return satisfiedEmployeesHaveAgeLessThan;
+    }
 
 }

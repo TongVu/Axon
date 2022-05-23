@@ -20,4 +20,5 @@ public interface EmployeeService {
     List<Employee> findEmployeeByFirstNameLikeAndLastNameLike(String firstName, String lastName);
     List<Employee> findEmployeeByFirstNameIgnoreCaseLike(String firstName);
     List<Employee> findEmployeeByDateOfBirthBefore(int year, int month, int day);
+    List<Employee> findEmployeeByAgeLessThan(Integer age);
 }

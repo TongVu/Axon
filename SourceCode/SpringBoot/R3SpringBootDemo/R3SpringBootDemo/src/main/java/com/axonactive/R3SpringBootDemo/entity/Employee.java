@@ -24,7 +24,7 @@ public class Employee {
     private String employeeid;
 
     @NotNull
-    private LocalDate dateOfBirth;
+    private LocalDate dateOfBirth = LocalDate.of(0, 01, 01);
 
     @NotNull
     @Size(min = 2, max = 20)
@@ -48,4 +48,10 @@ public class Employee {
     @JoinColumn(name = "deptid")
     private Department department;
 
+    @Transient
+    private Integer age;
+
+    public Integer getAge() {
+        return this.dateOfBirth.getYear() - LocalDate.now().getYear();
+    }
 }
