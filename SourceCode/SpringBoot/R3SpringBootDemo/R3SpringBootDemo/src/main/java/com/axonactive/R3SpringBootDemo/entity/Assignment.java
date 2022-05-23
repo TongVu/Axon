@@ -1,4 +1,4 @@
-package com.axonactive.demo.entities;
+package com.axonactive.R3SpringBootDemo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

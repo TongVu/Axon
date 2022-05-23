@@ -1,4 +1,4 @@
-package com.axonactive.demo.entities;
+package com.axonactive.R3SpringBootDemo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,28 +7,25 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+@Data
 @Builder
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "assignments")
-public class Assignment {
+@Table
+public class DepartmentLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private Integer numberOfHour;
+    @Size(max = 100)
+    private String location;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "employeeid")
-    Employee employee;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "projectid")
-    Project project;
+    @JoinColumn(name = "deptid")
+    private Department department;
 }
