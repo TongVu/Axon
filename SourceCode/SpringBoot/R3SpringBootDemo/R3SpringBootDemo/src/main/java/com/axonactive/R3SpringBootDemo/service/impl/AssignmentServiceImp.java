@@ -36,4 +36,20 @@ public class AssignmentServiceImp implements AssignmentService {
     public Optional<Assignment> findAssignmentById(Long id) {
         return assignmentRepository.findById(id);
     }
+
+    @Override
+    public Optional<Assignment> findAssignmentByEmployeeEmployeeid(String id){
+        return assignmentRepository.findAssignmentByEmployeeEmployeeid(id);
+    }
+
+    @Override
+    public Optional<Assignment> findAssignmentByProjectProjectid(Long id){
+        return assignmentRepository.findAssignmentByProjectProjectid(id);
+    }
+
+    @Override
+    public Optional<Assignment> findAssignmentByNumberOfHourGreaterThan(int hour){
+        return assignmentRepository.findAssignmentByNumberOfHourGreaterThan(hour);
+    }
+
 }

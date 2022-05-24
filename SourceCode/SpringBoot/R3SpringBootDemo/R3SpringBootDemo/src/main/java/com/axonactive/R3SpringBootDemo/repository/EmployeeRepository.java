@@ -12,4 +12,7 @@ public interface EmployeeRepository
     List<Employee> findEmployeeByFirstNameLikeAndLastNameLike(String firstName, String lastName);
     List<Employee> findEmployeeByFirstNameIgnoreCaseLike(String firstName);
     List<Employee> findEmployeeByDateOfBirthBefore(LocalDate parse);
+    List<Employee> findEmployeeByDateOfBirthBetween(LocalDate dateStart, LocalDate dateEnd);
+    List<Employee> findEmployeeByDepartmentId(Long id);
+    List<Employee> findEmployeeByFirstNameContaining(String pattern);
 }

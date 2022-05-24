@@ -15,4 +15,7 @@ public interface AssignmentService {
 
     Optional<Assignment> findAssignmentById(Long id);
 
+    Optional<Assignment> findAssignmentByEmployeeEmployeeid(String emplyeeId);
+    Optional<Assignment> findAssignmentByProjectProjectid(Long id);
+    Optional<Assignment> findAssignmentByNumberOfHourGreaterThan(int hour);
 }

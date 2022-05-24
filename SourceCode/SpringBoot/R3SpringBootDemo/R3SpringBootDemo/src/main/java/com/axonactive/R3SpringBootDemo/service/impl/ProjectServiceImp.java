@@ -36,4 +36,22 @@ public class ProjectServiceImp implements ProjectService {
     public Optional<Project> findProjectById(Long id) {
         return projectRepository.findById(id);
     }
+
+    @Override
+    public List<Project> findProjectByProjectName(String name) {
+        return projectRepository.findProjectByProjectName(name);
+    }
+    @Override
+    public List<Project> findProjectByDepartmentId(Long id){
+        return projectRepository.findProjectByDepartmentId(id);
+    }
+
+    @Override
+    public List<Project> findProjectByDepartmentDepartmentName(String deptName){
+        return projectRepository.findProjectByDepartmentDepartmentName(deptName);
+    }
+    @Override
+    public List<Project> findProjectByProjectNameLike(String projectName){
+        return projectRepository.findProjectByProjectNameLike(projectName);
+    }
 }

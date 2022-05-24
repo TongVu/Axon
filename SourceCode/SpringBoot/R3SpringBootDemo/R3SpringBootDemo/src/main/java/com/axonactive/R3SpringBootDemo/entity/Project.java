@@ -29,4 +29,5 @@ public class Project {
     @ManyToOne
     @JoinColumn(name ="managed_department")
     private Department department;
+
 }

@@ -71,4 +71,20 @@ public class EmployeeServiceImp implements EmployeeService {
         return satisfiedEmployeesHaveAgeLessThan;
     }
 
+    @Override
+    public List<Employee> findEmployeeByDateOfBirthBetween(LocalDate dateStart, LocalDate dateEnd){
+        return employeeRepository.findEmployeeByDateOfBirthBetween(dateStart, dateEnd);
+    }
+
+    @Override
+    public List<Employee> findEmployeeByDepartmentId(Long id){
+        return employeeRepository.findEmployeeByDepartmentId(id);
+    }
+    @Override
+    public List<Employee> findEmployeeByFirstNameContaining(String pattern){
+        return employeeRepository.findEmployeeByFirstNameContaining(pattern);
+    }
+
+
+
 }

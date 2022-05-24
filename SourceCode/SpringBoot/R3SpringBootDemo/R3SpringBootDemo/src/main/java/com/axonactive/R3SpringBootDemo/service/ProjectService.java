@@ -15,4 +15,9 @@ public interface ProjectService {
 
     Optional<Project> findProjectById(Long id);
 
+    List<Project> findProjectByProjectName(String name);
+
+    List<Project> findProjectByDepartmentId(Long id);
+    List<Project> findProjectByDepartmentDepartmentName(String deptName);
+    List<Project> findProjectByProjectNameLike(String projectName);
 }
