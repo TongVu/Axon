@@ -3,7 +3,6 @@ package com.axonactive.R3SpringBootDemo.service.impl;
 import com.axonactive.R3SpringBootDemo.entity.Employee;
 import com.axonactive.R3SpringBootDemo.repository.EmployeeRepository;
 import com.axonactive.R3SpringBootDemo.service.EmployeeService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
-@RequiredArgsConstructor
+// no need RequireArgumentConstructor
 public class EmployeeServiceImp implements EmployeeService {
 
     @Autowired
-    private final EmployeeRepository employeeRepository;
+    // delete private final
+    EmployeeRepository employeeRepository;
 
     @Override
     public List<Employee> getAllEmployee(){
@@ -25,8 +26,9 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public void saveEmployee(Employee employee){
+    public Employee saveEmployee(Employee employee){
         employeeRepository.save(employee);
+        return employee;
     }
 
     @Override

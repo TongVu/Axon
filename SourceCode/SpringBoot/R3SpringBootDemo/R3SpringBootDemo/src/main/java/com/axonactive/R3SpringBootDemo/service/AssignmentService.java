@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface AssignmentService {
     List<Assignment> getAll();
 
-    void saveAssignment(Assignment assignment);
+    Assignment saveAssignment(Assignment assignment);
 
     void deleteAssignmentById(Long id);
 

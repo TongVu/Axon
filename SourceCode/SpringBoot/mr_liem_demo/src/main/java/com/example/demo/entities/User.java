@@ -22,6 +22,14 @@ public class User {
 	public User() {
 		super();
 	}
+
+	public User(long id, String name, String email, String phone) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+	}
+
 	public User(String name, String email, String phone) {
 		super();
 		this.name = name;

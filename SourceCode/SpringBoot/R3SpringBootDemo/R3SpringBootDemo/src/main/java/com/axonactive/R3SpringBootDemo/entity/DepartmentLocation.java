@@ -20,6 +20,8 @@ public class DepartmentLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     @NotNull
     @Size(max = 100)
     private String location;

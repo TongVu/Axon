@@ -1,45 +1,32 @@
 package com.example.demo.services;
 
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.data.UserDTO;
+import com.example.demo.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 
-import com.example.demo.entities.User;
-import com.example.demo.repositories.UserRepository;
+import java.util.List;
+import java.util.Optional;
+
+public interface UserService {
+    public abstract List<User> getAllUser();
 
 
+    public abstract User saveUser(User user);
 
-@Service
-public class UserService {
+    public abstract void deleteUser(Long id) ;
 
-	@Autowired
-	private UserRepository userRepository;
+    public abstract Optional<User> findById(Long id);
+    public abstract User findByName(String name);
 
-	public List<User> getAllUser() {
-		return (List<User>) userRepository.findAll();
-	}
+    public abstract Page<User> findPaginated(int pageNo, int pageSize);
 
-	public void saveUser(User user) {
-		userRepository.save(user);
-	}
+    public abstract List<User> searchUser(String keyword);
 
-	public void deleteUser(Long id) {
-		userRepository.deleteById(id);
-	}
+    public abstract User toUserEntity(UserDTO userDTO);
+    public abstract List<User> toUserEntity(List<UserDTO> userDTOs);
 
-	public Optional<User> findUserById(Long id) {
-		return userRepository.findById(id);
-	}
+    public abstract List<UserDTO> toUserDTO(List<User> users);
+    public abstract UserDTO toUserDTO(User user);
 
-	public Page<User> findPaginated(int pageNo, int pageSize) {
-		PageRequest pageable = PageRequest.of(pageNo - 1, pageSize);
-		return this.userRepository.findAll(pageable);
-	}
-
-	public List<User> searchUser(String keyword) {
-		return userRepository.search(keyword);
-	}
 }

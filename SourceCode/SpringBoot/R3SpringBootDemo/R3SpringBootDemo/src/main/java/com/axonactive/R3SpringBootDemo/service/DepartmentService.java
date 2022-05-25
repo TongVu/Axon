@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface DepartmentService {
     List<Department> getAllDepartment();
 
-    void saveDepartment(Department department);
+    Department saveDepartment(Department department);
 
     void deleteDepartmentById(Long id);
 

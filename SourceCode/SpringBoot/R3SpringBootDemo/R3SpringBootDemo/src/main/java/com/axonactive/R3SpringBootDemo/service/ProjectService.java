@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ProjectService {
     List<Project> getAllProject();
 
-    void saveProject(Project project);
+    Project saveProject(Project project);
 
     void deleteProjectById(Long id);
 
