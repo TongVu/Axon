@@ -7,7 +7,9 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -42,5 +44,17 @@ public class ProjectRestController {
         projectToUpdate.setDepartment(project.getDepartment());
 
         return ResponseEntity.ok().body(projectService.saveProject(projectToUpdate));
+    }
+
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deleteProjectByProjectId(@PathVariable(value = "id") Long id )throws ResourceNotFoundException{
+        Project projectToDelete = projectService.findProjectById(id).
+                orElseThrow(() -> new ResourceNotFoundException("Project not found " + id));
+        projectService.deleteProjectById(id);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Deleted", Boolean.TRUE);
+
+        return response;
     }
 }

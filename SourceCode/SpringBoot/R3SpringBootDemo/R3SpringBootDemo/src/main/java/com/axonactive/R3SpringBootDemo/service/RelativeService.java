@@ -1,6 +1,7 @@
 package com.axonactive.R3SpringBootDemo.service;
 
 import com.axonactive.R3SpringBootDemo.entity.Relative;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 public interface RelativeService {
     List<Relative> getAllRelative();
 
-    void saveRelative(Relative relative);
+    ResponseEntity<Relative> saveRelative(Relative relative);
 
     void deleteRelativeById(Long id);
 

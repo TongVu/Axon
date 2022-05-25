@@ -5,6 +5,7 @@ import com.axonactive.R3SpringBootDemo.repository.RelativeRepository;
 import com.axonactive.R3SpringBootDemo.service.RelativeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,9 @@ public class RelativeServiceImp implements RelativeService {
     }
 
     @Override
-    public void saveRelative(Relative relative){
+    public ResponseEntity<Relative> saveRelative(Relative relative){
         relativeRepository.save(relative);
+        return null;
     }
 
     @Override
