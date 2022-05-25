@@ -27,7 +27,7 @@ public class Employee {
     private LocalDate dateOfBirth = LocalDate.of(0, 01, 01);
 
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 1, max = 20)
     private String firstName;
 
     @NotNull
@@ -35,7 +35,7 @@ public class Employee {
     private String gender;
 
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size( max = 20)
     private String lastName;
 
     @Size(max = 20)
@@ -48,10 +48,11 @@ public class Employee {
     @JoinColumn(name = "deptid")
     private Department department;
 
+    //violate singleton pattern
     @Transient
     private Integer age;
 
     public Integer getAge() {
-        return this.dateOfBirth.getYear() - LocalDate.now().getYear();
+        return -this.dateOfBirth.getYear() + LocalDate.now().getYear();
     }
 }

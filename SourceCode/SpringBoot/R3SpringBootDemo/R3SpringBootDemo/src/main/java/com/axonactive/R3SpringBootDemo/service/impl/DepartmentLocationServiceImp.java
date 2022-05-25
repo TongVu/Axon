@@ -1,7 +1,9 @@
 package com.axonactive.R3SpringBootDemo.service.impl;
 
+import com.axonactive.R3SpringBootDemo.entity.Department;
 import com.axonactive.R3SpringBootDemo.entity.DepartmentLocation;
 import com.axonactive.R3SpringBootDemo.repository.DepartmentLocationRepository;
+import com.axonactive.R3SpringBootDemo.repository.DepartmentRepository;
 import com.axonactive.R3SpringBootDemo.service.DepartmentLocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,16 @@ public class DepartmentLocationServiceImp implements DepartmentLocationService {
     @Autowired
     private final DepartmentLocationRepository departmentLocationRepository;
 
+
     @Override
     public List<DepartmentLocation> getAllDepartmentLocation(){
         return departmentLocationRepository.findAll();
     }
 
     @Override
-    public void saveDepartmentLocation(DepartmentLocation departmentLocation){
+    public DepartmentLocation saveDepartmentLocation(DepartmentLocation departmentLocation){
         departmentLocationRepository.save(departmentLocation);
+        return departmentLocation;
     }
 
     @Override

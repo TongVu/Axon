@@ -23,8 +23,9 @@ public class AssignmentServiceImp implements AssignmentService {
     }
 
     @Override
-    public void saveAssignment(Assignment assignment){
+    public Assignment saveAssignment(Assignment assignment){
         assignmentRepository.save(assignment);
+        return assignment;
     }
 
     @Override

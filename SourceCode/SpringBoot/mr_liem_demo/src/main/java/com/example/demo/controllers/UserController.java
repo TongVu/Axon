@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entities.User;
-import com.example.demo.services.UserService;
+import com.example.demo.services.UserServiceImpl;
 
 
 @Controller
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -39,7 +39,7 @@ public class UserController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String editUser(@RequestParam("id") Long userId, Model model) {
-		Optional<User> userEdit = userService.findUserById(userId);
+		Optional<User> userEdit = userService.findById(userId);
 		userEdit.ifPresent(user -> model.addAttribute("user", user));
 
 		return "editUser";
