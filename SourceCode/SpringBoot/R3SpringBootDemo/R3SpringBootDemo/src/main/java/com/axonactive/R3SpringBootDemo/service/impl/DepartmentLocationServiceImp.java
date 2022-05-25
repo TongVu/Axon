@@ -23,8 +23,9 @@ public class DepartmentLocationServiceImp implements DepartmentLocationService {
     }
 
     @Override
-    public void saveDepartmentLocation(DepartmentLocation departmentLocation){
+    public DepartmentLocation saveDepartmentLocation(DepartmentLocation departmentLocation){
         departmentLocationRepository.save(departmentLocation);
+        return departmentLocation;
     }
 
     @Override

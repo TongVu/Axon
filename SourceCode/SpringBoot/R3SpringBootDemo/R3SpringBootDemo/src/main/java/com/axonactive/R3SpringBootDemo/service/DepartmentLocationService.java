@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface DepartmentLocationService {
     List<DepartmentLocation> getAllDepartmentLocation();
 
-    void saveDepartmentLocation(DepartmentLocation departmentLocation);
+    DepartmentLocation saveDepartmentLocation(DepartmentLocation departmentLocation);
 
     void deleteDepartmentLocation(Long id);
 

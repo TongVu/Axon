@@ -36,4 +36,8 @@ public class RelativeServiceImp implements RelativeService {
     public Optional<Relative> findRelativeById(Long id) {
         return relativeRepository.findById(id);
     }
+    @Override
+    public Optional<Relative> findRelativeByEmployeeId(Long empId){
+        return relativeRepository.findRelativeByEmployeeId(empId);
+    }
 }

@@ -15,4 +15,5 @@ public interface RelativeService {
 
     Optional<Relative> findRelativeById(Long id);
 
+    Optional<Relative> findRelativeByEmployeeId(Long empId);
 }
