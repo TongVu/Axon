@@ -1,6 +1,9 @@
 package com.axonactive.R3SpringBootDemo.service.impl;
 
+import com.axonactive.R3SpringBootDemo.dtoData.EmployeeDTO;
+import com.axonactive.R3SpringBootDemo.dtoData.ProjectDTO;
 import com.axonactive.R3SpringBootDemo.entity.Employee;
+import com.axonactive.R3SpringBootDemo.entity.Project;
 import com.axonactive.R3SpringBootDemo.repository.EmployeeRepository;
 import com.axonactive.R3SpringBootDemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,5 +91,57 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
 
+    @Override
+    public Employee toEmployeeEntity(EmployeeDTO employeeDTO) {
+        return new Employee(
+                employeeDTO.getId(),
+                employeeDTO.getEmployeeid(),
+                employeeDTO.getDateOfBirth(),
+                employeeDTO.getFirstName(),
+                employeeDTO.getGender(),
+                employeeDTO.getLastName(),
+                employeeDTO.getMiddleName(),
+                employeeDTO.getSalary(),
+                employeeDTO.getDepartment(),
+                employeeDTO.getAge()
+        );
+    }
+
+    @Override
+    public List<Employee> toEmployeeEntity(List<EmployeeDTO> employeeDTOs) {
+        List<Employee> employeeList = new ArrayList<>();
+        for (EmployeeDTO emp : employeeDTOs) {
+            employeeList.add(this.toEmployeeEntity(emp));
+        }
+        
+        return employeeList;
+    }
+
+    @Override
+    public EmployeeDTO toEmployeeDTO(Employee employee){
+        return new EmployeeDTO(
+                employee.getId(),
+                employee.getEmployeeid(),
+                employee.getDateOfBirth(),
+                employee.getFirstName(),
+                employee.getGender(),
+                employee.getLastName(),
+                employee.getMiddleName(),
+                employee.getSalary(),
+                employee.getDepartment(),
+                employee.getAge()
+        );
+    }
+
+    @Override
+    public List<EmployeeDTO> toEmployeeDTO(List<Employee> employees){
+        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
+
+        for (Employee emp : employees) {
+            employeeDTOS.add(this.toEmployeeDTO(emp));
+        }
+
+        return employeeDTOS;
+    }
 
 }

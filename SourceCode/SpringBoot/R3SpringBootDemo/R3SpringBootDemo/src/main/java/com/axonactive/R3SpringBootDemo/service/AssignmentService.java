@@ -1,6 +1,7 @@
 package com.axonactive.R3SpringBootDemo.service;
 
 
+import com.axonactive.R3SpringBootDemo.dtoData.AssignmentDTO;
 import com.axonactive.R3SpringBootDemo.entity.Assignment;
 
 import java.util.List;
@@ -18,4 +19,11 @@ public interface AssignmentService {
     Optional<Assignment> findAssignmentByEmployeeEmployeeid(String emplyeeId);
     Optional<Assignment> findAssignmentByProjectProjectid(Long id);
     Optional<Assignment> findAssignmentByNumberOfHourGreaterThan(int hour);
+
+    AssignmentDTO toAssignmentDTO(Assignment assignment);
+    List<AssignmentDTO> toAssignmentDTO(List<Assignment> assignmentList);
+
+    Assignment toAssignmentEntity(AssignmentDTO assignmentDTO);
+    List<Assignment> toAssignmentEntity(List<AssignmentDTO> assignmentDTO);
 }
+

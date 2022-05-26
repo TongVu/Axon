@@ -1,5 +1,6 @@
 package com.axonactive.R3SpringBootDemo.service;
 
+import com.axonactive.R3SpringBootDemo.dtoData.ProjectDTO;
 import com.axonactive.R3SpringBootDemo.entity.Project;
 
 import java.util.List;
@@ -20,4 +21,11 @@ public interface ProjectService {
     List<Project> findProjectByDepartmentId(Long id);
     List<Project> findProjectByDepartmentDepartmentName(String deptName);
     List<Project> findProjectByProjectNameLike(String projectName);
+
+    ProjectDTO toProjectDTO(Project project);
+    List<ProjectDTO> toProjectDTO(List<Project> project);
+
+    Project toProjectEntity(ProjectDTO projectDTO);
+    List<Project> toProjectEntity(List<ProjectDTO> projectDTO);
+
 }

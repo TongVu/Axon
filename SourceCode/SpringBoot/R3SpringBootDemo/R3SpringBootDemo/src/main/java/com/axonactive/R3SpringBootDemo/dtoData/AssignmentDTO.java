@@ -14,7 +14,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class AssignmentDTO {
     private Long id;
+
     private Integer numberOfHour;
+
     Employee employee;
+
     Project project;
 }
