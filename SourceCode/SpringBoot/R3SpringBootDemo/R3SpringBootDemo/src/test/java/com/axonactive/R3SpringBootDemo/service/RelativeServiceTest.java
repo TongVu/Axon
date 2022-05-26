@@ -116,5 +116,10 @@ class RelativeServiceTest {
         @Test
         void findRelativeByEmployeeId_shouldReturnData_whenFound(){
         }
+
+        @Test
+        void findRelativeByFullName_shouldReturnData_whenFound(){
+            assertEquals(newRelative.getId(), relativeService.findRelativeByFullName("Bill Gates").get().getId());
+        }
     }
 }

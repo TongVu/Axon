@@ -1,6 +1,5 @@
-package com.axonactive.R3SpringBootDemo.restapi;
+package com.axonactive.R3SpringBootDemo.restController;
 
-import ch.qos.logback.core.recovery.ResilientOutputStreamBase;
 import com.axonactive.R3SpringBootDemo.entity.Relative;
 import com.axonactive.R3SpringBootDemo.service.RelativeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(RelativesRESTController.PATH)
 public class RelativesRESTController {
-    public static final String PATH = "/relatives";
+    public static final String PATH = "api/relatives";
 
     @Autowired
     RelativeService relativeService;
@@ -46,12 +44,12 @@ public class RelativesRESTController {
         relativeToUpdate.setFullName(relative.getFullName());
         relativeToUpdate.setPhoneNumber(relative.getPhoneNumber());
 
-        return relativeService.saveRelative(relativeToUpdate);
+        return ResponseEntity.ok().body(relativeService.saveRelative(relativeToUpdate));
     }
 
     @PostMapping("/add")
     public ResponseEntity<Relative> addRelative(@RequestBody Relative relative){
-        return relativeService.saveRelative(relative);
+        return ResponseEntity.ok().body(relativeService.saveRelative(relative));
     }
 
     @DeleteMapping("/{id}")

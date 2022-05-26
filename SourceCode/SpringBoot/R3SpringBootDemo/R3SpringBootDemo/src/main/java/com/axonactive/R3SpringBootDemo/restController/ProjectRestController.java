@@ -1,4 +1,4 @@
-package com.axonactive.R3SpringBootDemo.restapi;
+package com.axonactive.R3SpringBootDemo.restController;
 
 import com.axonactive.R3SpringBootDemo.entity.Project;
 import com.axonactive.R3SpringBootDemo.service.ProjectService;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping(ProjectRestController.PATH)
 public class ProjectRestController {
-    public static final String PATH = "projects";
+    public static final String PATH = "api/projects";
     @Autowired
     ProjectService projectService;
 

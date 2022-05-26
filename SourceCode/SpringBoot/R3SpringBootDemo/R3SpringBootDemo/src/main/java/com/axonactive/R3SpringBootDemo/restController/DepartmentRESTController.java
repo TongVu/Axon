@@ -1,4 +1,4 @@
-package com.axonactive.R3SpringBootDemo.restapi;
+package com.axonactive.R3SpringBootDemo.restController;
 
 import com.axonactive.R3SpringBootDemo.entity.Department;
 import com.axonactive.R3SpringBootDemo.service.DepartmentService;
@@ -13,14 +13,14 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(DepartmentLocationRESTController.PATH)
+@RequestMapping(DepartmentRESTController.PATH)
 public class DepartmentRESTController {
-    public final String PATH = "/departments";
+    public static final String PATH = "api/department";
 
     @Autowired
     DepartmentService departmentService;
 
-    @GetMapping("/list")
+    @GetMapping
     public List<Department> getAllDepartment() {
         return departmentService.getAllDepartment();
     }
@@ -46,7 +46,7 @@ public class DepartmentRESTController {
         return departmentService.saveDepartment(department);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteDepartmentById(@PathVariable(value = "id") Long id ) {
         Department department = departmentService.findDepartmentById(id).
                 orElseThrow(() -> new ResourceNotFoundException("Department not found " + id));

@@ -1,4 +1,4 @@
-package com.axonactive.R3SpringBootDemo.restapi;
+package com.axonactive.R3SpringBootDemo.restController;
 
 import com.axonactive.R3SpringBootDemo.entity.DepartmentLocation;
 import com.axonactive.R3SpringBootDemo.service.DepartmentLocationService;
@@ -15,33 +15,33 @@ import java.util.Optional;
 @RestController
 @RequestMapping(DepartmentLocationRESTController.PATH)
 public class DepartmentLocationRESTController {
-    public static final String PATH = "departmentslocations";
+    public static final String PATH = "/departmentslocation";
 
     @Autowired
     DepartmentLocationService departmentLocationService;
 
-    @GetMapping("/list")
+    @GetMapping("")
     public List<DepartmentLocation> getAllDepartmentLocation(){
         return departmentLocationService.getAllDepartmentLocation();
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/{id}")
     public Optional<DepartmentLocation> getDepartmentLocationById(@PathVariable(value = "id") Long id){
         return departmentLocationService.findDepartmentLocationById(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     public DepartmentLocation addDepartmentLocation(@RequestBody DepartmentLocation newDepartmentlocation) {
         return departmentLocationService.saveDepartmentLocation(newDepartmentlocation);
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<DepartmentLocation> updateDepartmentLocation(@PathVariable(value = "id") Long id,
-                                                   @RequestBody DepartmentLocation departmentLocation)
-    throws Exception{
+                                                   @RequestBody DepartmentLocation departmentLocation) throws ResourceNotFoundException{
         DepartmentLocation departmentLocationToUpdate =
                 departmentLocationService.findDepartmentLocationById(id).
                 orElseThrow(() -> new ResourceNotFoundException("department location id not found"));
+
         departmentLocationToUpdate.setDepartment(departmentLocation.getDepartment());
         departmentLocationToUpdate.setLocation(departmentLocation.getLocation());
         DepartmentLocation updatedDeptLoc = departmentLocationService.saveDepartmentLocation(departmentLocationToUpdate);
@@ -49,12 +49,12 @@ public class DepartmentLocationRESTController {
         return ResponseEntity.ok().body(updatedDeptLoc);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteDepartmentLocation(@PathVariable(value = "id") Long id,
                                                          @RequestBody DepartmentLocation departmentLocation){
         DepartmentLocation departmentLocationToDel =
                 departmentLocationService.findDepartmentLocationById(id).
-                        orElseThrow(() -> new ResourceNotFoundException("Department Location id not foun"));
+                        orElseThrow(() -> new ResourceNotFoundException("Department Location id not found"));
 
         departmentLocationService.deleteDepartmentLocation(departmentLocationToDel.getId());
         Map<String, Boolean> res = new HashMap<>();

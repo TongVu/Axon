@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface RelativeRepository
         extends JpaRepository<Relative, Long> {
     Optional<Relative> findRelativeByEmployeeId(Long empId);
+
+    Optional<Relative> findRelativeByFullName(String name);
+
 }

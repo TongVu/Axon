@@ -1,4 +1,4 @@
-package com.axonactive.R3SpringBootDemo.restapi;
+package com.axonactive.R3SpringBootDemo.restController;
 
 import com.axonactive.R3SpringBootDemo.entity.Employee;
 import com.axonactive.R3SpringBootDemo.service.EmployeeService;
@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(EmployeeRESTController.PATH)
 public class EmployeeRESTController {
-    public static final String PATH = "employees";
+    public static final String PATH = "api/employees";
 
     @Autowired
     private EmployeeService employeeService;

@@ -1,4 +1,4 @@
-package com.axonactive.R3SpringBootDemo.restapi;
+package com.axonactive.R3SpringBootDemo.restController;
 
 import com.axonactive.R3SpringBootDemo.entity.Assignment;
 import com.axonactive.R3SpringBootDemo.service.AssignmentService;
@@ -15,16 +15,16 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = AssignmentRESTController.PATH)
 public class AssignmentRESTController {
-    public static final String PATH = "assignments/";
+    public static final String PATH = "api/assignments";
     @Autowired
     private AssignmentService assignmentService;
 
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Assignment> getAllAssignment(){
         return assignmentService.getAll();
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/{id}")
     public Optional<Assignment> getAssignmentById(@PathVariable (value = "id") Long id){
         return assignmentService.findAssignmentById(id);
     }
@@ -34,7 +34,7 @@ public class AssignmentRESTController {
         return assignmentService.saveAssignment(newAssignment);
     }
 
-    @DeleteMapping("/deleteAssignment/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> delete(@RequestParam (value = "id") Long id) throws ResourceNotFoundException{
         Assignment assignmentToDeleted = assignmentService.findAssignmentById(id).
                 orElseThrow(() -> new ResourceNotFoundException("Assignment not found " + id));
@@ -45,7 +45,7 @@ public class AssignmentRESTController {
         return res;
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Assignment> updateById(@RequestParam (value = "id") Long id,
                                                  @RequestBody Assignment assignment) throws ResourceNotFoundException{
         Assignment assignmentToUpdate = assignmentService.findAssignmentById(id).
