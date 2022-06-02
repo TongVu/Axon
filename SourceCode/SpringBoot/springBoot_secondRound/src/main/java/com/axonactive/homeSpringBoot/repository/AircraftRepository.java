@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface AircraftRepository extends JpaRepository<Aircraft, Integer> {
     List<Aircraft> findByDistanceGreaterThan(Integer distance);
-//    List<Aircraft> findByTypeContaining(@Param("type") String type);
-    List<Aircraft> findByTypeContaining(String type);
+    List<Aircraft> findByTypeContaining(@Param("type") String type);
 }

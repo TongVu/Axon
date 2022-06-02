@@ -11,4 +11,6 @@ public interface CertificateService {
     Optional<Certificate> findById(Integer id);
     Certificate save(Certificate aircraft);
     void deleteById(Integer id);
+    List<Certificate> findEmployeeIdByAircraftId(Integer id);
+    List<Certificate> findAircraftIdThatEmployeesHaveLastNameIsNguyenCanFly();
 }

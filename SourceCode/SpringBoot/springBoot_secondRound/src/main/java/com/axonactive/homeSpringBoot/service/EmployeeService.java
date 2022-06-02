@@ -12,4 +12,6 @@ public interface EmployeeService {
     void deleteById(Integer id);
 
     List<Employee> findBySalaryLessThan(Integer salary);
+    Integer calculateTotalSalaryForAllEmployees();
+    List<Employee> findEmployeeByNameLike(String name);
 }

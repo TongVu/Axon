@@ -40,5 +40,4 @@ public class Flight {
 
     @NotNull
     private double price;
-
 }

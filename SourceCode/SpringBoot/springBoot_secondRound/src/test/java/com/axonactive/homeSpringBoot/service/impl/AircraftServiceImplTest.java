@@ -75,10 +75,9 @@ class AircraftServiceImplTest {
         }
 
         @Test
-        void findByTypeContainingAirbus_shouldReturnData_whenFound() {
+        void findByTypeContaining_shouldReturnData_whenFound() {
             assertEquals(1, aircraftService.findByTypeContaining("Airbus").size());
             assertEquals(3, aircraftService.findByTypeContaining("Boeing").size());
         }
-
     }
 }

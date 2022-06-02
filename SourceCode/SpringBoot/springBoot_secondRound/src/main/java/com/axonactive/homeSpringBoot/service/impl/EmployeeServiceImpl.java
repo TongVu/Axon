@@ -4,7 +4,6 @@ import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.repository.EmployeeRepository;
 import com.axonactive.homeSpringBoot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +38,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> findBySalaryLessThan(Integer salary) {
         return employeeRepository.findBySalaryLessThan(salary);
+    }
+
+    @Override
+    public Integer calculateTotalSalaryForAllEmployees() {
+        Integer totalSalary = 0;
+        for (Employee emp : employeeRepository.findAll()) {
+            totalSalary += emp.getSalary();
+        }
+
+        return totalSalary;
+    }
+    @Override
+    public List<Employee> findEmployeeByNameLike(String name){
+        return employeeRepository.findEmployeeByNameLike("Nguyen%");
     }
 
 }
