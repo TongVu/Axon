@@ -13,5 +13,6 @@ public interface EmployeeService {
 
     List<Employee> findBySalaryLessThan(Integer salary);
     Integer calculateTotalSalaryForAllEmployees();
-    List<Employee> findEmployeeByNameLike(String name);
+
+    List<String> findAllNamesOfPilotCanFlyBoeingAircraft();
 }

@@ -1,11 +1,14 @@
 package com.axonactive.homeSpringBoot.service.impl;
 
+import com.axonactive.homeSpringBoot.entity.Aircraft;
 import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.repository.FlightRepository;
+import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,13 +17,16 @@ public class FlightServiceImpl implements FlightService {
     @Autowired
     FlightRepository flightRepository;
 
+    @Autowired
+    AircraftService aircraftService;
+
     @Override
     public List<Flight> findAll() {
         return flightRepository.findAll();
     }
 
     @Override
-    public Optional<Flight> findById(Integer id) {
+    public Optional<Flight> findById(String id) {
         return flightRepository.findById(id);
     }
 
@@ -40,7 +46,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<Flight> findByDistanceGreaterThanAndDistanceLessThan(int min, int max){
+    public List<Flight> findByDistanceGreaterThanAndDistanceLessThan(int min, int max) {
         return flightRepository.findByDistanceGreaterThanAndDistanceLessThan(min, max);
     }
 
@@ -49,7 +55,21 @@ public class FlightServiceImpl implements FlightService {
         return flightRepository.findByDepartureTerminalEqualsAndArrivalTerminalEquals(departureTerminal, arrivalTerminal);
     }
 
-    public List<Flight> findAllFlightsDepartureFromSGN(){
+    public List<Flight> findAllFlightsDepartureFromSGN() {
         return flightRepository.findByDepartureTerminal("SGN");
     }
+
+    @Override
+    public List<Flight> findByDistanceLessThan(Integer distance) {
+        return flightRepository.findByDistanceLessThan(distance);
+    }
+
+    @Override
+    public List<Flight> findAllFlightCouldBeOperatedByAirbus320() {
+        Aircraft aircraft = aircraftService.findByTypeContaining("Airbus A320").get(0);
+        List<Flight> flightSCouldOperatedByAirbus320 = flightRepository.findByDistanceLessThan(aircraft.getDistance());;
+
+        return flightSCouldOperatedByAirbus320;
+    }
+
 }

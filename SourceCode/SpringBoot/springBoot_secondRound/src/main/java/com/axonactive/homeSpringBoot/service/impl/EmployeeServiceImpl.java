@@ -1,11 +1,15 @@
 package com.axonactive.homeSpringBoot.service.impl;
 
+import com.axonactive.homeSpringBoot.entity.Aircraft;
+import com.axonactive.homeSpringBoot.entity.Certificate;
 import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.repository.EmployeeRepository;
+import com.axonactive.homeSpringBoot.service.CertificateService;
 import com.axonactive.homeSpringBoot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +18,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    CertificateService certificateService;
 
     @Override
     public List<Employee> findAll() {
@@ -49,9 +55,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return totalSalary;
     }
-    @Override
-    public List<Employee> findEmployeeByNameLike(String name){
-        return employeeRepository.findEmployeeByNameLike("Nguyen%");
-    }
 
+    @Override
+    public List<String> findAllNamesOfPilotCanFlyBoeingAircraft(){
+        List<Certificate> boeingCertificates = certificateService.findByAircraftTypeLike("Boeing%");
+        List<Employee> employeeList = employeeRepository.findAll();
+        List<String> nameOfPilotsCanFlyBoeingAircraft = new ArrayList<>();
+        for (Employee emp : employeeList)
+            for (Certificate boeingCertificate : boeingCertificates)
+                if(emp.getId().equals(boeingCertificate.getEmployee().getId()))
+                    nameOfPilotsCanFlyBoeingAircraft.add(emp.getName());
+
+        return nameOfPilotsCanFlyBoeingAircraft;
+    }
 }

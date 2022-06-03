@@ -7,11 +7,13 @@ import java.util.Optional;
 
 public interface FlightService {
     List<Flight> findAll();
-    Optional<Flight> findById(Integer id);
+    Optional<Flight> findById(String id);
     Flight save(Flight flight);
     void deleteById(Integer id);
 
     List<Flight> findByDepartureTerminal(String departureTerminal);
     List<Flight> findByDistanceGreaterThanAndDistanceLessThan(int min, int max);
     List<Flight> findByDepartureTerminalEqualsAndArrivalTerminalEquals(String departureTerminal, String arrivalTerminal);
+    List<Flight> findByDistanceLessThan(Integer distance);
+    List<Flight> findAllFlightCouldBeOperatedByAirbus320();
 }

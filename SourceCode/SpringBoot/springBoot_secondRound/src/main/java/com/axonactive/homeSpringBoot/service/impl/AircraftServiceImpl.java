@@ -3,6 +3,7 @@ package com.axonactive.homeSpringBoot.service.impl;
 import com.axonactive.homeSpringBoot.entity.Aircraft;
 import com.axonactive.homeSpringBoot.repository.AircraftRepository;
 import com.axonactive.homeSpringBoot.service.AircraftService;
+import com.axonactive.homeSpringBoot.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,10 @@ import java.util.Optional;
 public class AircraftServiceImpl implements AircraftService {
     @Autowired
     AircraftRepository aircraftRepository;
+
+    @Autowired
+    FlightService flightService;
+
 
     @Override
     public List<Aircraft> findAll() {
@@ -40,8 +45,14 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
-    public List<Aircraft> findByTypeContaining(String type){
+    public List<Aircraft> findByTypeContaining(String type) {
         return aircraftRepository.findByTypeContaining(type);
     }
 
+    @Override
+    public List<Aircraft> findAllAirCraftsCouldOperateVN280Flight() {
+        Integer distanceOfVN280Flight = flightService.findById("VN280").get().getDistance();
+
+        return aircraftRepository.findByDistanceGreaterThan(distanceOfVN280Flight);
+    }
 }

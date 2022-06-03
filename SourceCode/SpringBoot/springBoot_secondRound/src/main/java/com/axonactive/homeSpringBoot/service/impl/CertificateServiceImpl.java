@@ -1,25 +1,18 @@
 package com.axonactive.homeSpringBoot.service.impl;
 
 import com.axonactive.homeSpringBoot.entity.Certificate;
-import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.repository.CertificateRepository;
-import com.axonactive.homeSpringBoot.repository.EmployeeRepository;
 import com.axonactive.homeSpringBoot.service.CertificateService;
+import com.axonactive.homeSpringBoot.service.dto.CertificateShowTotalPilotsOfEachAircraftDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CertificateServiceImpl implements CertificateService {
     @Autowired
     CertificateRepository certificateRepository;
-
-    @Autowired
-    EmployeeRepository employeeRepository;
-
 
     @Override
     public List<Certificate> findAll() {
@@ -46,16 +39,41 @@ public class CertificateServiceImpl implements CertificateService {
         return certificateRepository.findByAircraftId(id);
     }
 
-    @Override // 11
-    public List<Certificate> findAircraftIdThatEmployeesHaveLastNameIsNguyenCanFly() {
-        List<Employee> employeesHaveLastNameIsNguyen = employeeRepository.findEmployeeByNameLike("Nguyen");
-        List<Certificate> aircraftIdsThatEmployeesHaveLastNameIsNguyenCanFly =
-                new ArrayList<>();
-        for (Certificate certificate : certificateRepository.findAll())
-            for (Employee emp : employeesHaveLastNameIsNguyen)
-                if (certificate.getEmployee().getId().equals(emp.getId()))
-                    aircraftIdsThatEmployeesHaveLastNameIsNguyenCanFly.add(certificate);
+    @Override
+    public List<Certificate> findByEmployeeNameStartingWith(String lookedPattern) {
+        return certificateRepository.findByEmployeeNameStartingWith(lookedPattern);
+    }
 
-        return aircraftIdsThatEmployeesHaveLastNameIsNguyenCanFly;
+    @Override
+    public Set<Integer> findAircraftIdsThatEmployeesHaveLastNameIsNguyenCanFly() {
+        Set<Integer> aircraftsThatEmployeesHaveLastNameIsNguyenCanFly = new HashSet<>();
+        List<Certificate> certificatesOfEmployeesHaveLastNameIsNguyen =
+                findByEmployeeNameStartingWith("Nguyen");
+
+        for (Certificate cer : certificatesOfEmployeesHaveLastNameIsNguyen)
+            aircraftsThatEmployeesHaveLastNameIsNguyenCanFly.add(cer.getAircraft().getId());
+        return aircraftsThatEmployeesHaveLastNameIsNguyenCanFly;
+    }
+
+    @Override
+    public List<Certificate> findByAircraftTypeLike(String aircraftType){
+        return certificateRepository.findByAircraftTypeLike(aircraftType);
+    }
+
+    @Override
+    public Set<CertificateShowTotalPilotsOfEachAircraftDTO> findTotalPilotsOfEachAircraft(){
+        List<Certificate> certificates = certificateRepository.findAll();
+        Set<CertificateShowTotalPilotsOfEachAircraftDTO> totalPilotsCertificate = new HashSet<>();
+
+        for (Certificate certificate : certificates) {
+            totalPilotsCertificate.add(new CertificateShowTotalPilotsOfEachAircraftDTO(certificate.getAircraft().getType(), 0));
+        }
+
+        for (CertificateShowTotalPilotsOfEachAircraftDTO certificate: totalPilotsCertificate)
+            for (Certificate cer : certificates)
+                if(certificate.getAircraftType().equals(cer.getAircraft().getType()))
+                    certificate.increasePilot();
+
+        return totalPilotsCertificate;
     }
 }

@@ -13,4 +13,5 @@ public interface AircraftService {
 
     List<Aircraft> findByDistanceGreaterThan(Integer distance);
     List<Aircraft> findByTypeContaining(String type);
+    List<Aircraft> findAllAirCraftsCouldOperateVN280Flight();
 }
