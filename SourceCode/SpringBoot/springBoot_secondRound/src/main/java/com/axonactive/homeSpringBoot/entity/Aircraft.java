@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table
 public class Aircraft {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

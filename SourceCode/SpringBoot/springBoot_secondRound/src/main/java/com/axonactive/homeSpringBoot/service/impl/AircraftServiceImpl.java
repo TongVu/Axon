@@ -18,7 +18,6 @@ public class AircraftServiceImpl implements AircraftService {
     @Autowired
     FlightService flightService;
 
-
     @Override
     public List<Aircraft> findAll() {
         return aircraftRepository.findAll();

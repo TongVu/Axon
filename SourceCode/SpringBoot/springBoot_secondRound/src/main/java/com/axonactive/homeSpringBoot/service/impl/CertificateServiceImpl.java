@@ -3,6 +3,9 @@ package com.axonactive.homeSpringBoot.service.impl;
 import com.axonactive.homeSpringBoot.entity.Certificate;
 import com.axonactive.homeSpringBoot.repository.CertificateRepository;
 import com.axonactive.homeSpringBoot.service.CertificateService;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfTotalAircraftsAPilotCanFlyDTO;
 import com.axonactive.homeSpringBoot.service.dto.CertificateShowTotalPilotsOfEachAircraftDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,12 +59,12 @@ public class CertificateServiceImpl implements CertificateService {
     }
 
     @Override
-    public List<Certificate> findByAircraftTypeLike(String aircraftType){
+    public List<Certificate> findByAircraftTypeLike(String aircraftType) {
         return certificateRepository.findByAircraftTypeLike(aircraftType);
     }
 
     @Override
-    public Set<CertificateShowTotalPilotsOfEachAircraftDTO> findTotalPilotsOfEachAircraft(){
+    public Set<CertificateShowTotalPilotsOfEachAircraftDTO> findTotalPilotsOfEachAircraft() {
         List<Certificate> certificates = certificateRepository.findAll();
         Set<CertificateShowTotalPilotsOfEachAircraftDTO> totalPilotsCertificate = new HashSet<>();
 
@@ -69,11 +72,25 @@ public class CertificateServiceImpl implements CertificateService {
             totalPilotsCertificate.add(new CertificateShowTotalPilotsOfEachAircraftDTO(certificate.getAircraft().getType(), 0));
         }
 
-        for (CertificateShowTotalPilotsOfEachAircraftDTO certificate: totalPilotsCertificate)
+        for (CertificateShowTotalPilotsOfEachAircraftDTO certificate : totalPilotsCertificate)
             for (Certificate cer : certificates)
-                if(certificate.getAircraftType().equals(cer.getAircraft().getType()))
+                if (certificate.getAircraftType().equals(cer.getAircraft().getType()))
                     certificate.increasePilot();
 
         return totalPilotsCertificate;
+    }
+
+    //    @Override
+//    public List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts(){
+//        return certificateRepository.findPilotCanOnlyFly3Aircrafts();
+//    }
+    @Override
+    public List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly() {
+        return certificateRepository.findTotalAircraftsAPilotCanFly();
+    }
+
+    @Override
+    public List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> getEmployeeCanFlyMoreThan3AircraftsAndMaxRange() {
+        return certificateRepository.findEmployeeCanFlyMoreThan3AicraftsAndMaxRangeOfThoseAircrafts();
     }
 }

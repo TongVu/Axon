@@ -1,8 +1,11 @@
 package com.axonactive.homeSpringBoot.repository;
 
 import com.axonactive.homeSpringBoot.entity.Certificate;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfTotalAircraftsAPilotCanFlyDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,4 +15,15 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
     List<Certificate> findByAircraftId(Integer id);
     List<Certificate> findByEmployeeNameStartingWith(String lookedPattern);
     List<Certificate> findByAircraftTypeLike(String aircraftType);
+
+//    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO(employeeId, COUNT(id)) "+
+//            "FROM Certificate GROUP BY employeeId HAVING COUNT(id) = 3")
+//    List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
+
+    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfTotalAircraftsAPilotCanFlyDTO(e.id, COUNT(c.id)) " +
+    "FROM Certificate c, Employee e GROUP BY e.id")
+    List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly();
+
+    @Query(nativeQuery = true)
+    List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> findEmployeeCanFlyMoreThan3AicraftsAndMaxRangeOfThoseAircrafts();
 }

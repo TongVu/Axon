@@ -14,8 +14,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Data
 public class FlightFromAToBAndFromBToADTO {
-    private String id;
-
     private String departureTerminal;
 
     private String arrivalTerminal;
