@@ -27,13 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 class FlightServiceImplTest {
     @Autowired
-    ApplicationContext applicationContext;
-
-    @Autowired
     FlightService flightService;
-
-    @Autowired
-    AircraftService aircraftService;
 
     @Test
     void getAllFlights_shouldReturnNoData_whenTableFirstCreated() {
@@ -57,6 +51,7 @@ class FlightServiceImplTest {
         private Flight flightFromDADToSGN;
 
         private Aircraft airbus320;
+        private Aircraft boeingAircraft;
 
         @BeforeEach
         void setup() {
@@ -142,6 +137,12 @@ class FlightServiceImplTest {
                     .price(221)
                     .build();
             flightService.save(flightFromDADToSGN);
+
+            boeingAircraft = Aircraft.builder()
+                    .type("Boeing 474")
+                    .distance(4000)
+                    .build();
+            aircraftService.save(boeingAircraft);
         }
 
         @Test
@@ -207,6 +208,16 @@ class FlightServiceImplTest {
         @Test
         void findByDepartureTimeBefore() {
             assertEquals(3, flightService.findByDepartureTimeBeforeTwelve().size());
+        }
+
+        @Test
+        void getTotalFlightsBeforeTwelveOfEachTerminal_shouldReturnData_whenFound() {
+            assertEquals(2, flightService.getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime.of(12,0,0)).size());
+        }
+
+        @Test
+        void getFlightsCouldBeOperatedByBoeing() {
+            assertEquals(3, flightService.getFlightsCouldBeOperatedByBoeing().size());
         }
 
 

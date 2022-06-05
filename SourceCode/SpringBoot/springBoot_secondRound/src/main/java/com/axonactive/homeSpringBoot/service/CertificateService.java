@@ -22,7 +22,9 @@ public interface CertificateService {
     List<Certificate> findByAircraftTypeLike(String aircraftType);
 
     Set<CertificateShowTotalPilotsOfEachAircraftDTO> findTotalPilotsOfEachAircraft();
-//    List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
+    List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
     List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly();
     List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> getEmployeeCanFlyMoreThan3AircraftsAndMaxRange();
+    int totalSalaryOfAllPilots();
+
 }

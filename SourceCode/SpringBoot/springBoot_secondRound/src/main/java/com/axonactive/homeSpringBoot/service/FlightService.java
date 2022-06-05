@@ -1,10 +1,7 @@
 package com.axonactive.homeSpringBoot.service;
 
 import com.axonactive.homeSpringBoot.entity.Flight;
-import com.axonactive.homeSpringBoot.service.dto.FlightCanOperateBeforeTwelveDTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightFromAToBAndFromBToADTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightFromEachDepartureTerminalDTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightWithTotalSalary;
+import com.axonactive.homeSpringBoot.service.dto.*;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -26,4 +23,6 @@ public interface FlightService {
     List<FlightWithTotalSalary> getTotalSalaryForEachFlight();
     List<FlightCanOperateBeforeTwelveDTO> getAllFlightsCanOperateBeforeTwelve(LocalTime timeDeparture);
     List<Flight> findByDepartureTimeBeforeTwelve();
+    List<FlightBeforeTwelveOfEachTerminalDTO> getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime departureTime);
+    List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing();
 }

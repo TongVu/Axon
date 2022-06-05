@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FlightCanOperateBeforeTwelveDTO {
-    private String id;
+public class FlightBeforeTwelveOfEachTerminalDTO {
+    private String departureTerminal;
+
+    private Long totalFlights;
 }

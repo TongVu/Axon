@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FlightCanOperateBeforeTwelveDTO {
+public class EmployeeNotPilotDTO {
     private String id;
+
+    private String name;
 }

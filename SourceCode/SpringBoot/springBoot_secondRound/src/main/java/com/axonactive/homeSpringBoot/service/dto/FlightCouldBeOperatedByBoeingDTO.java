@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FlightCanOperateBeforeTwelveDTO {
+public class FlightCouldBeOperatedByBoeingDTO {
     private String id;
+    private Integer distance;
 }

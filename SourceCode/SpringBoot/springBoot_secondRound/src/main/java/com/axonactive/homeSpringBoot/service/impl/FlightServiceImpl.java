@@ -5,10 +5,7 @@ import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.repository.FlightRepository;
 import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.FlightService;
-import com.axonactive.homeSpringBoot.service.dto.FlightCanOperateBeforeTwelveDTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightFromAToBAndFromBToADTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightFromEachDepartureTerminalDTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightWithTotalSalary;
+import com.axonactive.homeSpringBoot.service.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -101,4 +98,12 @@ public class FlightServiceImpl implements FlightService {
         return flightRepository.findByDepartureTimeBefore(LocalTime.of(12,0,0));
     }
 
+    @Override
+    public List<FlightBeforeTwelveOfEachTerminalDTO> getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime departureTime){
+        return flightRepository.getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime.of(12,0,0));
+    }
+    @Override
+    public List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing(){
+        return flightRepository.getFlightsCouldBeOperatedByBoeing();
+    }
 }

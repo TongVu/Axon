@@ -1,6 +1,7 @@
 package com.axonactive.homeSpringBoot.service.impl;
 
 import com.axonactive.homeSpringBoot.entity.Certificate;
+import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.repository.CertificateRepository;
 import com.axonactive.homeSpringBoot.service.CertificateService;
 import com.axonactive.homeSpringBoot.service.dto.CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO;
@@ -80,10 +81,11 @@ public class CertificateServiceImpl implements CertificateService {
         return totalPilotsCertificate;
     }
 
-    //    @Override
-//    public List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts(){
-//        return certificateRepository.findPilotCanOnlyFly3Aircrafts();
-//    }
+    @Override
+    public List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts(){
+        return certificateRepository.findPilotCanOnlyFly3Aircrafts();
+    }
+
     @Override
     public List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly() {
         return certificateRepository.findTotalAircraftsAPilotCanFly();
@@ -92,5 +94,20 @@ public class CertificateServiceImpl implements CertificateService {
     @Override
     public List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> getEmployeeCanFlyMoreThan3AircraftsAndMaxRange() {
         return certificateRepository.findEmployeeCanFlyMoreThan3AicraftsAndMaxRangeOfThoseAircrafts();
+    }
+    @Override
+    public int totalSalaryOfAllPilots(){
+        List<Certificate> certificates = certificateRepository.findAll();
+        List<Employee> employeeList = new ArrayList<>();
+        for (Certificate cer : certificates)
+            employeeList.add(cer.getEmployee());
+
+        Set<Employee> allPilots = new HashSet<>();
+        allPilots.addAll(employeeList);
+
+        int totalSalary = 0;
+        for (Employee pilot : allPilots) totalSalary += pilot.getSalary();
+
+        return totalSalary;
     }
 }

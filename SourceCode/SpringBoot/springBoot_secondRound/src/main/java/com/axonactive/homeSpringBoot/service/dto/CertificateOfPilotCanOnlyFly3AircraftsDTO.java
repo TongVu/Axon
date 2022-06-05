@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class CertificateOfPilotCanOnlyFly3AircraftsDTO {
     private String employeeId;
 
-    private int totalAircraftsCanFly;
+    private Long totalAircraftsCanFly;
 }

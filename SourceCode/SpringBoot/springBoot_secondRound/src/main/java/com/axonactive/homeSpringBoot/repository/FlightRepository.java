@@ -1,10 +1,7 @@
 package com.axonactive.homeSpringBoot.repository;
 
 import com.axonactive.homeSpringBoot.entity.Flight;
-import com.axonactive.homeSpringBoot.service.dto.FlightCanOperateBeforeTwelveDTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightFromAToBAndFromBToADTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightFromEachDepartureTerminalDTO;
-import com.axonactive.homeSpringBoot.service.dto.FlightWithTotalSalary;
+import com.axonactive.homeSpringBoot.service.dto.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -43,4 +40,14 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
     List<FlightCanOperateBeforeTwelveDTO> getAllFlightsCanOperateBeforeTwelve(LocalTime timeDeparture);
 
     List<Flight> findByDepartureTimeBefore(LocalTime time);
+
+    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.FlightBeforeTwelveOfEachTerminalDTO (departureTerminal, COUNT(id)) " +
+            "FROM Flight WHERE departureTime < ?1 GROUP BY departureTerminal")
+    List<FlightBeforeTwelveOfEachTerminalDTO> getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime departureTime);
+
+    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.FlightCouldBeOperatedByBoeingDTO(id, distance) " +
+            "FROM Flight WHERE distance < (SELECT MIN(distance) FROM Aircraft WHERE LOWER(type) LIKE '%boeing%')")
+    List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing();
+
 }
+

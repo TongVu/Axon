@@ -16,9 +16,10 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
     List<Certificate> findByEmployeeNameStartingWith(String lookedPattern);
     List<Certificate> findByAircraftTypeLike(String aircraftType);
 
-//    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO(employeeId, COUNT(id)) "+
-//            "FROM Certificate GROUP BY employeeId HAVING COUNT(id) = 3")
-//    List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
+
+    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO(e.id, COUNT(c.id)) "+
+            "FROM Certificate c, Employee e GROUP BY e.id HAVING COUNT(c.id) = 3")
+    List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
 
     @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfTotalAircraftsAPilotCanFlyDTO(e.id, COUNT(c.id)) " +
     "FROM Certificate c, Employee e GROUP BY e.id")

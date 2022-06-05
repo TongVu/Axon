@@ -6,6 +6,8 @@ import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.repository.EmployeeRepository;
 import com.axonactive.homeSpringBoot.service.CertificateService;
 import com.axonactive.homeSpringBoot.service.EmployeeService;
+import com.axonactive.homeSpringBoot.service.dto.EmployeeNotPilotDTO;
+import com.axonactive.homeSpringBoot.service.dto.EmployeeWithHighestSalaryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,15 +59,31 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<String> findAllNamesOfPilotCanFlyBoeingAircraft(){
+    public List<String> findAllNamesOfPilotCanFlyBoeingAircraft() {
         List<Certificate> boeingCertificates = certificateService.findByAircraftTypeLike("Boeing%");
         List<Employee> employeeList = employeeRepository.findAll();
         List<String> nameOfPilotsCanFlyBoeingAircraft = new ArrayList<>();
         for (Employee emp : employeeList)
             for (Certificate boeingCertificate : boeingCertificates)
-                if(emp.getId().equals(boeingCertificate.getEmployee().getId()))
+                if (emp.getId().equals(boeingCertificate.getEmployee().getId()))
                     nameOfPilotsCanFlyBoeingAircraft.add(emp.getName());
 
         return nameOfPilotsCanFlyBoeingAircraft;
     }
+
+    @Override
+    public List<EmployeeNotPilotDTO> findEmployeeWhoIsNotPilot() {
+        return employeeRepository.findEmployeeWhoIsNotPilot();
+    }
+
+    //    @Override
+//    public List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot() {
+//        return employeeRepository.findEmployeeWhoNotPilot();
+//    }
+    @Override
+    public List<EmployeeWithHighestSalaryDTO> findEmployeeWithHighestSalary(){
+        return employeeRepository.findEmployeeWithHighestSalary();
+    }
+
+
 }
