@@ -33,7 +33,6 @@ class CertificateServiceImplTest {
         assertEquals(0, certificateService.findAll().size());
     }
 
-
     @Nested
     class TestAfterSaved{
         @Autowired
@@ -45,9 +44,15 @@ class CertificateServiceImplTest {
         @Autowired
         AircraftService aircraftService;
 
-        private Certificate certificate1;
         private Employee employeeCanFly747AirCraft;
+
+        private Certificate certificate1;
+        private Certificate madeUpcertificate;
+        private Certificate madeUpcertificate2;
+
         private Aircraft aircraft747;
+        private Aircraft madeUpAircraft;
+        private Aircraft madeUpAircraft2;
 
         @BeforeEach
         void setup(){
@@ -57,6 +62,12 @@ class CertificateServiceImplTest {
                     .name("Nguyen Thi Xuan Dao")
                     .build();
             employeeService.save(employeeCanFly747AirCraft);
+
+            madeUpAircraft = Aircraft.builder()
+                    .type("Truc Anh")
+                    .distance(10000)
+                    .build();
+            aircraftService.save(madeUpAircraft);
 
             aircraft747 = Aircraft.builder()
                     .type("Boeing 747 - 400")
@@ -69,6 +80,24 @@ class CertificateServiceImplTest {
                     .employee(employeeCanFly747AirCraft)
                     .build();
             certificateService.save(certificate1);
+
+            madeUpcertificate = Certificate.builder()
+                    .aircraft(madeUpAircraft)
+                    .employee(employeeCanFly747AirCraft)
+                    .build();
+            certificateService.save(madeUpcertificate);
+
+            madeUpAircraft2 = Aircraft.builder()
+                    .type("Tonging")
+                    .distance(11000)
+                    .build();
+            aircraftService.save(madeUpAircraft2);
+
+            madeUpcertificate2 = Certificate.builder()
+                    .employee(employeeCanFly747AirCraft)
+                    .aircraft(madeUpAircraft2)
+                    .build();
+            certificateService.save(madeUpcertificate2);
         }
 
         @Test
@@ -78,7 +107,7 @@ class CertificateServiceImplTest {
 
         @Test
         void findAircraftIdsThatEmployeesHaveLastNameIsNguyenCanFly_shouldReturnData_whenFound() {
-            assertEquals(1,
+            assertEquals(3,
                     certificateService.findAircraftIdsThatEmployeesHaveLastNameIsNguyenCanFly().size());
         }
 
@@ -89,8 +118,30 @@ class CertificateServiceImplTest {
 
         @Test
         void findTotalPilotsOfEachAircraft_shouldReturnData_whenFound() {
-            assertEquals(1,
+            assertEquals(3,
                     certificateService.findTotalPilotsOfEachAircraft().size());
         }
+
+        @Test
+        void findPilotCanOnlyFly3Aircrafts() {
+            assertEquals(1, certificateService.findPilotCanOnlyFly3Aircrafts().size());
+        }
+
+        @Test
+        void findTotalAircraftsAPilotCanFly() {
+//            assertEquals(1, certificateService.findTotalAircraftsAPilotCanFly());
+            assertEquals(1, certificateService.findTotalAircraftsAPilotCanFly().size());
+        }
+
+        @Test
+        void getEmployeeCanFlyMoreThan3AircraftsAndMaxRange() {
+            assertEquals(0, certificateService.getEmployeeCanFlyMoreThan3AircraftsAndMaxRange().size());
+        }
+
+        @Test
+        void totalSalaryOfAllPilots() {
+            assertEquals(employeeCanFly747AirCraft.getSalary(), certificateService.totalSalaryOfAllPilots());
+        }
+
     }
 }

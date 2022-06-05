@@ -14,7 +14,25 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table
+@SqlResultSetMapping(
+        name = "EmployeeWhoIsNotPilot",
+        classes = {
+                @ConstructorResult(
+                        targetClass = com.axonactive.homeSpringBoot.service.dto.EmployeeNotPilotDTO.class,
+                        columns = {
+                                @ColumnResult(name = "id", type = String.class),
+                                @ColumnResult(name = "name", type = String.class)})})
+@NamedNativeQuery(
+        name = Employee.FIND_EMPLOYEE_WHO_IS_NOT_PILOT,
+        query =
+                "SELECT id, name FROM employee WHERE id NOT IN ( " +
+                        "SELECT employee_id FROM certificate)",
+        resultSetMapping = "EmployeeWhoIsNotPilot")
+
 public class Employee {
+    public static final String FIND_EMPLOYEE_WHO_IS_NOT_PILOT = "Employee.findEmployeeWhoIsNotPilot";
+
     @Id
     private String id;
 

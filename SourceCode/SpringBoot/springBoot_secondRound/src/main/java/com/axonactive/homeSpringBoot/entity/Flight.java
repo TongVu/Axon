@@ -17,6 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Builder
+@Table
 public class Flight {
     @Id
     private String id;

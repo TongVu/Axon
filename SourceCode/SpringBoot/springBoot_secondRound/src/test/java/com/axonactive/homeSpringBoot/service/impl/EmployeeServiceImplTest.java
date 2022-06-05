@@ -6,6 +6,7 @@ import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.CertificateService;
 import com.axonactive.homeSpringBoot.service.EmployeeService;
+import com.axonactive.homeSpringBoot.service.dto.EmployeeNotPilotDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EmployeeServiceImplTest {
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    CertificateService certificateService;
+
+    @Autowired
+    AircraftService aircraftService;
 
     @Test
     void getAllEmployee_shouldReturnNoData_whenTableFirstCreated() {
@@ -92,7 +99,7 @@ class EmployeeServiceImplTest {
 
         @Test
         void calculateTotalSalaryForAllEmployees_shouldSumAllEmployeesSalary_whenHaveData() {
-            assertEquals(153972 + 146028 + 227489 ,
+            assertEquals(153972 + 146028 + 227489,
                     employeeService.calculateTotalSalaryForAllEmployees());
         }
 
@@ -101,5 +108,22 @@ class EmployeeServiceImplTest {
             assertEquals(employeeCanFly747AirCraft.getName(),
                     employeeService.findAllNamesOfPilotCanFlyBoeingAircraft().get(0));
         }
+
+//        @Test
+//        void findEmployeeWhoArentPilot() {
+//            assertEquals(2, employeeService.findEmployeeWhoNotPilot().size());
+//        }
+
+        @Test
+        void findEmployeeWhoIsNotPilot() {
+            assertEquals(2, employeeService.findEmployeeWhoIsNotPilot().size());
+        }
+
+        @Test
+        void findEmployeeWithHighestSalary() {
+            assertEquals(1, employeeService.findEmployeeWithHighestSalary().size());
+        }
+
+
     }
 }

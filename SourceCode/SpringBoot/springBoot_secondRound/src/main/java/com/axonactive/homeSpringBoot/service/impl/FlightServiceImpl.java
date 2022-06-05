@@ -5,15 +5,17 @@ import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.repository.FlightRepository;
 import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.FlightService;
+import com.axonactive.homeSpringBoot.service.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class FlightServiceImpl implements FlightService {
+
     @Autowired
     FlightRepository flightRepository;
 
@@ -67,9 +69,41 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> findAllFlightCouldBeOperatedByAirbus320() {
         Aircraft aircraft = aircraftService.findByTypeContaining("Airbus A320").get(0);
-        List<Flight> flightSCouldOperatedByAirbus320 = flightRepository.findByDistanceLessThan(aircraft.getDistance());;
+        List<Flight> flightSCouldOperatedByAirbus320 = flightRepository.findByDistanceLessThan(aircraft.getDistance());
 
         return flightSCouldOperatedByAirbus320;
     }
 
+    @Override
+    public List<FlightFromAToBAndFromBToADTO> getRoundTripFlight() {
+        return flightRepository.getRoundTripFlight();
+    }
+
+    @Override
+    public List<FlightFromEachDepartureTerminalDTO> getTotalFlightsFromEachDepartureTerminal() {
+        return flightRepository.getTotalFlightsFromEachDepartureTerminal();
+    }
+    @Override
+    public List<FlightWithTotalSalary> getTotalSalaryForEachFlight(){
+        return flightRepository.getTotalSalaryForEachFlight();
+    }
+
+    @Override
+    public List<FlightCanOperateBeforeTwelveDTO> getAllFlightsCanOperateBeforeTwelve(LocalTime timeDeparture){
+        return flightRepository.getAllFlightsCanOperateBeforeTwelve(LocalTime.of(12,0,0));
+    }
+
+    @Override
+    public List<Flight> findByDepartureTimeBeforeTwelve(){
+        return flightRepository.findByDepartureTimeBefore(LocalTime.of(12,0,0));
+    }
+
+    @Override
+    public List<FlightBeforeTwelveOfEachTerminalDTO> getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime departureTime){
+        return flightRepository.getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime.of(12,0,0));
+    }
+    @Override
+    public List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing(){
+        return flightRepository.getFlightsCouldBeOperatedByBoeing();
+    }
 }

@@ -2,6 +2,9 @@ package com.axonactive.homeSpringBoot.service;
 
 import com.axonactive.homeSpringBoot.entity.Aircraft;
 import com.axonactive.homeSpringBoot.entity.Certificate;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO;
+import com.axonactive.homeSpringBoot.service.dto.CertificateOfTotalAircraftsAPilotCanFlyDTO;
 import com.axonactive.homeSpringBoot.service.dto.CertificateShowTotalPilotsOfEachAircraftDTO;
 
 import java.util.List;
@@ -19,4 +22,9 @@ public interface CertificateService {
     List<Certificate> findByAircraftTypeLike(String aircraftType);
 
     Set<CertificateShowTotalPilotsOfEachAircraftDTO> findTotalPilotsOfEachAircraft();
+    List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
+    List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly();
+    List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> getEmployeeCanFlyMoreThan3AircraftsAndMaxRange();
+    int totalSalaryOfAllPilots();
+
 }

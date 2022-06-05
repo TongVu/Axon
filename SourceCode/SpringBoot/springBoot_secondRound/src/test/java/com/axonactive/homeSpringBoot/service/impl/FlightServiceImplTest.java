@@ -4,6 +4,7 @@ import com.axonactive.homeSpringBoot.entity.Aircraft;
 import com.axonactive.homeSpringBoot.entity.Flight;
 import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.FlightService;
+import com.axonactive.homeSpringBoot.service.dto.FlightWithTotalSalary;
 import lombok.RequiredArgsConstructor;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,13 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 class FlightServiceImplTest {
     @Autowired
-    ApplicationContext applicationContext;
-
-    @Autowired
     FlightService flightService;
-
-    @Autowired
-    AircraftService aircraftService;
 
     @Test
     void getAllFlights_shouldReturnNoData_whenTableFirstCreated() {
@@ -52,16 +47,19 @@ class FlightServiceImplTest {
         private Flight flightDepartureFromSGNToBMV;
         private Flight flightDepartureFromSGNToDIN;
         private Flight flightVn320;
+        private Flight flightFromSGNToDAD;
+        private Flight flightFromDADToSGN;
 
         private Aircraft airbus320;
+        private Aircraft boeingAircraft;
 
         @BeforeEach
         void setup() {
             flight = Flight.builder()
                     .id("VN315")
                     .arrivalTime(LocalTime.of(13, 00, 00))
-                    .arrivalTerminal("DAD")
                     .departureTerminal("HAN")
+                    .arrivalTerminal("DAD")
                     .departureTime(LocalTime.of(11, 45, 00))
                     .distance(134)
                     .price(112)
@@ -116,8 +114,35 @@ class FlightServiceImplTest {
                     .type("Airbus A320")
                     .distance(4168)
                     .build();
-
             aircraftService.save(airbus320);
+
+            flightFromSGNToDAD = Flight.builder()
+                    .id("VN651")
+                    .departureTerminal("DAD")
+                    .arrivalTerminal("SGN")
+                    .distance(2798)
+                    .departureTime(LocalTime.of(19, 30, 0))
+                    .arrivalTime(LocalTime.of(8, 0, 0))
+                    .price(221)
+                    .build();
+            flightService.save(flightFromSGNToDAD);
+
+            flightFromDADToSGN = Flight.builder()
+                    .id("VN320")
+                    .departureTerminal("SGN")
+                    .arrivalTerminal("DAD")
+                    .distance(2798)
+                    .departureTime(LocalTime.of(6, 0, 0))
+                    .arrivalTime(LocalTime.of(7, 10, 0))
+                    .price(221)
+                    .build();
+            flightService.save(flightFromDADToSGN);
+
+            boeingAircraft = Aircraft.builder()
+                    .type("Boeing 474")
+                    .distance(4000)
+                    .build();
+            aircraftService.save(boeingAircraft);
         }
 
         @Test
@@ -148,13 +173,53 @@ class FlightServiceImplTest {
 
         @Test
         void findByDistanceLessThan_shouldReturnData_whenFound() {
-            assertEquals(4, flightService.findByDistanceLessThan(10000).size());
+            assertEquals(5, flightService.findByDistanceLessThan(10000).size());
         }
 
         @Test
         void findAllFlightCouldBeOperatedByAirbus320_shouldReturnData_whenFound() {
-            assertEquals(3, flightService.findAllFlightCouldBeOperatedByAirbus320().size());
+            assertEquals(4, flightService.findAllFlightCouldBeOperatedByAirbus320().size());
         }
+
+        @Test
+        void getRoundTripFlight_shouldReturnData_whenFound() {
+            assertEquals(2, flightService.getRoundTripFlight().size());
+        }
+
+        @Test
+        void getTotalFlightsFromEachDepartureTerminal_shouldReturnData_whenFound() {
+            assertEquals(3, flightService.getTotalFlightsFromEachDepartureTerminal().size());
+        }
+
+        @Test
+        void getTotalSalaryForEachFlight_shouldReturnData_whenFound() {
+//             2 lines commented below are for testing purpose
+            for (FlightWithTotalSalary flight : flightService.getTotalSalaryForEachFlight())
+                System.out.println(flight);
+
+            assertEquals(3, flightService.getTotalSalaryForEachFlight().size());
+        }
+
+        @Test
+        void getAllFlightsCanOperateBeforeTwelve() {
+            assertEquals(3, flightService.getAllFlightsCanOperateBeforeTwelve(LocalTime.of(12,0,0)).size());
+        }
+
+        @Test
+        void findByDepartureTimeBefore() {
+            assertEquals(3, flightService.findByDepartureTimeBeforeTwelve().size());
+        }
+
+        @Test
+        void getTotalFlightsBeforeTwelveOfEachTerminal_shouldReturnData_whenFound() {
+            assertEquals(2, flightService.getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime.of(12,0,0)).size());
+        }
+
+        @Test
+        void getFlightsCouldBeOperatedByBoeing() {
+            assertEquals(3, flightService.getFlightsCouldBeOperatedByBoeing().size());
+        }
+
 
     }
 }

@@ -1,7 +1,9 @@
 package com.axonactive.homeSpringBoot.service;
 
 import com.axonactive.homeSpringBoot.entity.Flight;
+import com.axonactive.homeSpringBoot.service.dto.*;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,4 +18,11 @@ public interface FlightService {
     List<Flight> findByDepartureTerminalEqualsAndArrivalTerminalEquals(String departureTerminal, String arrivalTerminal);
     List<Flight> findByDistanceLessThan(Integer distance);
     List<Flight> findAllFlightCouldBeOperatedByAirbus320();
+    List<FlightFromAToBAndFromBToADTO> getRoundTripFlight();
+    List<FlightFromEachDepartureTerminalDTO>  getTotalFlightsFromEachDepartureTerminal();
+    List<FlightWithTotalSalary> getTotalSalaryForEachFlight();
+    List<FlightCanOperateBeforeTwelveDTO> getAllFlightsCanOperateBeforeTwelve(LocalTime timeDeparture);
+    List<Flight> findByDepartureTimeBeforeTwelve();
+    List<FlightBeforeTwelveOfEachTerminalDTO> getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime departureTime);
+    List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing();
 }
