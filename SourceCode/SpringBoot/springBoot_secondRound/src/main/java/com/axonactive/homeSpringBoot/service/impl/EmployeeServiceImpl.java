@@ -76,10 +76,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findEmployeeWhoIsNotPilot();
     }
 
-    //    @Override
-//    public List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot() {
-//        return employeeRepository.findEmployeeWhoNotPilot();
-//    }
+        @Override
+    public List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot() {
+        return employeeRepository.findEmployeeWhoNotPilot();
+    }
     @Override
     public List<EmployeeWithHighestSalaryDTO> findEmployeeWithHighestSalary(){
         return employeeRepository.findEmployeeWithHighestSalary();

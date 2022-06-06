@@ -17,7 +17,7 @@ public interface EmployeeService {
     Integer calculateTotalSalaryForAllEmployees();
 
     List<String> findAllNamesOfPilotCanFlyBoeingAircraft();
-//    List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot();
+    List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot();
     List<EmployeeNotPilotDTO> findEmployeeWhoIsNotPilot();
     List<EmployeeWithHighestSalaryDTO> findEmployeeWithHighestSalary();
 }

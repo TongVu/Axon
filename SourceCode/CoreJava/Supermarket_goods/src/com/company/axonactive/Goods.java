@@ -1,6 +1,5 @@
 package com.company.axonactive;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class Goods implements SalesRate{

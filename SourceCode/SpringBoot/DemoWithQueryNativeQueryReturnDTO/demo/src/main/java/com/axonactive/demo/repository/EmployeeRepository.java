@@ -15,7 +15,4 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query(value="SELECT e.* FROM Employee e WHERE e.first_name like CONCAT('%',:firstName,'%')", nativeQuery = true)
     List<Employee> getEmployeebyFirstname(@Param("firstName") String firstname);
-
-
-
 }

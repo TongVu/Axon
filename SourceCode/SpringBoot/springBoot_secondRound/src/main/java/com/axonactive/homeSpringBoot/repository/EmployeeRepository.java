@@ -13,9 +13,17 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     List<Employee> findBySalaryLessThan(Integer salary);
 
-    //    @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.EmployeeNotPilotDTO(e2.id, e2.name) " +
-//    "FROM Certificate c, Employee e, Employee e2 WHERE e.id <> e2.id")
-//    List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot();
+    /*
+    SELECT *
+FROM employees
+WHERE employee_id NOT IN (
+	SELECT employee_id
+	FROM certificates
+)
+     */
+        @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.EmployeeNotPilotDTO(id, name) " +
+                "FROM Employee WHERE id NOT IN (SELECT c.employee.id FROM Certificate c)")
+    List<EmployeeNotPilotDTO> findEmployeeWhoNotPilot();
     @Query(nativeQuery = true)
     List<EmployeeNotPilotDTO> findEmployeeWhoIsNotPilot();
 

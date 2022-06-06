@@ -6,7 +6,6 @@ import com.axonactive.homeSpringBoot.entity.Employee;
 import com.axonactive.homeSpringBoot.service.AircraftService;
 import com.axonactive.homeSpringBoot.service.CertificateService;
 import com.axonactive.homeSpringBoot.service.EmployeeService;
-import com.axonactive.homeSpringBoot.service.dto.EmployeeNotPilotDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -109,21 +108,19 @@ class EmployeeServiceImplTest {
                     employeeService.findAllNamesOfPilotCanFlyBoeingAircraft().get(0));
         }
 
-//        @Test
-//        void findEmployeeWhoArentPilot() {
-//            assertEquals(2, employeeService.findEmployeeWhoNotPilot().size());
-//        }
+        @Test
+        void findEmployeeWhoNotPilot_shouldReturnData_whenFound() {
+            assertEquals(2, employeeService.findEmployeeWhoNotPilot().size());
+        }
 
         @Test
-        void findEmployeeWhoIsNotPilot() {
+        void findEmployeeWhoIsNotPilot_shouldReturnData_whenFound() {
             assertEquals(2, employeeService.findEmployeeWhoIsNotPilot().size());
         }
 
         @Test
-        void findEmployeeWithHighestSalary() {
+        void findEmployeeWithHighestSalary_shouldReturnData_whenFound() {
             assertEquals(1, employeeService.findEmployeeWithHighestSalary().size());
         }
-
-
     }
 }
