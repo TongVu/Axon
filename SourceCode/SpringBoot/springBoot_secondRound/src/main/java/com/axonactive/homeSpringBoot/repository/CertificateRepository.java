@@ -18,13 +18,16 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
 
 
     @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfPilotCanOnlyFly3AircraftsDTO(e.id, COUNT(c.id)) "+
-            "FROM Certificate c, Employee e GROUP BY e.id HAVING COUNT(c.id) = 3")
+            "FROM Certificate c, Employee e WHERE c.employee.id = e.id GROUP BY e.id HAVING COUNT(c.id) = 3")
     List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts();
 
     @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.CertificateOfTotalAircraftsAPilotCanFlyDTO(e.id, COUNT(c.id)) " +
-    "FROM Certificate c, Employee e GROUP BY e.id")
+    "FROM Employee e JOIN Certificate c ON c.employee.id = e.id GROUP BY e.id") // modified
     List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly();
 
     @Query(nativeQuery = true)
     List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> findEmployeeCanFlyMoreThan3AicraftsAndMaxRangeOfThoseAircrafts();
+
+    @Query(nativeQuery = true)
+    List<Certificate> findEmployeeCanFlyBoeingAndAirbus();
 }

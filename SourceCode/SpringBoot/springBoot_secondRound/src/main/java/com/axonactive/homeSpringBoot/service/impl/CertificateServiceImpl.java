@@ -82,7 +82,7 @@ public class CertificateServiceImpl implements CertificateService {
     }
 
     @Override
-    public List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts(){
+    public List<CertificateOfPilotCanOnlyFly3AircraftsDTO> findPilotCanOnlyFly3Aircrafts() {
         return certificateRepository.findPilotCanOnlyFly3Aircrafts();
     }
 
@@ -95,8 +95,9 @@ public class CertificateServiceImpl implements CertificateService {
     public List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> getEmployeeCanFlyMoreThan3AircraftsAndMaxRange() {
         return certificateRepository.findEmployeeCanFlyMoreThan3AicraftsAndMaxRangeOfThoseAircrafts();
     }
+
     @Override
-    public int totalSalaryOfAllPilots(){
+    public int totalSalaryOfAllPilots() {
         List<Certificate> certificates = certificateRepository.findAll();
         List<Employee> employeeList = new ArrayList<>();
         for (Certificate cer : certificates)
@@ -109,5 +110,10 @@ public class CertificateServiceImpl implements CertificateService {
         for (Employee pilot : allPilots) totalSalary += pilot.getSalary();
 
         return totalSalary;
+    }
+
+    @Override
+    public List<Certificate> findEmployeeCanFlyBoeingAndAirbus() {
+        return certificateRepository.findEmployeeCanFlyBoeingAndAirbus();
     }
 }

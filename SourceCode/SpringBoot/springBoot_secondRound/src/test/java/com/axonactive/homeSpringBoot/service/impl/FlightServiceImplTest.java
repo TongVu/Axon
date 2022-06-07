@@ -49,6 +49,7 @@ class FlightServiceImplTest {
         private Flight flightVn320;
         private Flight flightFromSGNToDAD;
         private Flight flightFromDADToSGN;
+        private Flight flightArrivalPQC;
 
         private Aircraft airbus320;
         private Aircraft boeingAircraft;
@@ -138,6 +139,17 @@ class FlightServiceImplTest {
                     .build();
             flightService.save(flightFromDADToSGN);
 
+            flightArrivalPQC = Flight.builder()
+                    .id("SG2PQC")
+                    .departureTerminal("SGN")
+                    .arrivalTerminal("PQC")
+                    .distance(290)
+                    .departureTime(LocalTime.of(6,0,0))
+                    .arrivalTime(LocalTime.of(8,0,0))
+                    .price(100)
+                    .build();
+            flightService.save(flightArrivalPQC);
+
             boeingAircraft = Aircraft.builder()
                     .type("Boeing 474")
                     .distance(4000)
@@ -218,6 +230,11 @@ class FlightServiceImplTest {
         @Test
         void getFlightsCouldBeOperatedByBoeing() {
             assertEquals(3, flightService.getFlightsCouldBeOperatedByBoeing().size());
+        }
+
+        @Test
+        void findFlightHasArrivalTerminalPQC() {
+            assertEquals(1, flightService.findFlightHasArrivalTerminalPQC().size());
         }
 
 

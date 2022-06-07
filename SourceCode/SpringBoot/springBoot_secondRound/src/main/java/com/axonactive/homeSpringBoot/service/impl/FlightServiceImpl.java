@@ -106,4 +106,9 @@ public class FlightServiceImpl implements FlightService {
     public List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing(){
         return flightRepository.getFlightsCouldBeOperatedByBoeing();
     }
+
+    @Override
+    public List<Flight> findFlightHasArrivalTerminalPQC(){
+        return flightRepository.findFlightHasArrivalTerminalIsPqc();
+    }
 }

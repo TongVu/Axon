@@ -25,4 +25,5 @@ public interface FlightService {
     List<Flight> findByDepartureTimeBeforeTwelve();
     List<FlightBeforeTwelveOfEachTerminalDTO> getTotalFlightsBeforeTwelveOfEachTerminal(LocalTime departureTime);
     List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing();
+    List<Flight> findFlightHasArrivalTerminalPQC();
 }

@@ -62,7 +62,7 @@ public class WorkerList {
         return workers.size();
     }
 
-    public void showWorkersHaveMoreThan200Products() {
+    public void showWorkersHaveMoreThan200Products() { // should return a List
         for (Worker worker : workers)
             if (worker.getProducts() > 200) System.out.println(worker.toString());
     }

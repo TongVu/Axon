@@ -143,5 +143,9 @@ class CertificateServiceImplTest {
             assertEquals(employeeCanFly747AirCraft.getSalary(), certificateService.totalSalaryOfAllPilots());
         }
 
+        @Test
+        void findEmployeeCanFlyBoeingAndAirbus() {
+            assertEquals(0, certificateService.findEmployeeCanFlyBoeingAndAirbus().size());
+        }
     }
 }

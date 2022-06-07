@@ -15,8 +15,8 @@ public class Worker implements Comparable<Worker>{
 
     public double calculateUnitPrice() {
         if (products < 200) return 0.5;
-        else if (products >= 200 && products < 400) return 0.55;
-        else if (products >= 400 && products < 600) return 0.6;
+        else if (products < 400) return 0.55;
+        else if (products < 600) return 0.6;
 
         return 0.65;
     }

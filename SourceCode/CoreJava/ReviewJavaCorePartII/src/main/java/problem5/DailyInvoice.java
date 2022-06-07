@@ -16,7 +16,7 @@ public class DailyInvoice extends Invoice implements TotalIncome{
     public double total(){
         if(rentedDays > 7)
             return 7 * getPrice()
-                    + 0.2 * (rentedDays - 7) * getPrice();
+                    + 0.8 * (rentedDays - 7) * getPrice();
 
         return this.rentedDays * getPrice();
     }

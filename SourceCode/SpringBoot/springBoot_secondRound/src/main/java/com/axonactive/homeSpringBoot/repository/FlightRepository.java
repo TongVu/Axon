@@ -28,7 +28,7 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
     List<FlightFromAToBAndFromBToADTO> getRoundTripFlight();
 
     @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.FlightFromEachDepartureTerminalDTO(departureTerminal, COUNT(id)) " +
-            "FROM Flight GROUP BY departureTerminal")
+            "FROM Flight GROUP BY departureTerminal") // should be left joined from the aircraft table
     List<FlightFromEachDepartureTerminalDTO> getTotalFlightsFromEachDepartureTerminal();
 
     @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.FlightWithTotalSalary(departureTerminal, SUM(price)) " +
@@ -48,6 +48,9 @@ public interface FlightRepository extends JpaRepository<Flight, Integer> {
     @Query("SELECT new com.axonactive.homeSpringBoot.service.dto.FlightCouldBeOperatedByBoeingDTO(id, distance) " +
             "FROM Flight WHERE distance < (SELECT MIN(distance) FROM Aircraft WHERE LOWER(type) LIKE '%boeing%')")
     List<FlightCouldBeOperatedByBoeingDTO> getFlightsCouldBeOperatedByBoeing();
+
+    @Query(nativeQuery = true)
+    List<Flight> findFlightHasArrivalTerminalIsPqc();
 
 }
 

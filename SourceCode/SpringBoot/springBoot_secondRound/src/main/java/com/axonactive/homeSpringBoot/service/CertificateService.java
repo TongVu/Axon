@@ -26,5 +26,6 @@ public interface CertificateService {
     List<CertificateOfTotalAircraftsAPilotCanFlyDTO> findTotalAircraftsAPilotCanFly();
     List<CertificateOfEmployeeCanFlyMoreThan3AircraftsAndMaxRangeOfThoseAircraftsDTO> getEmployeeCanFlyMoreThan3AircraftsAndMaxRange();
     int totalSalaryOfAllPilots();
+    List<Certificate> findEmployeeCanFlyBoeingAndAirbus();
 
 }

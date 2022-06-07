@@ -5,12 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +19,14 @@ import java.util.Date;
 @Entity
 @Builder
 @Table
+@NamedNativeQuery(
+        name = Flight.FIND_FLIGHT_HAS_ARRIVAL_TERMINAL_IS_PQC,
+        query = "SELECT * " +
+                "FROM flight " +
+                "WHERE arrival_terminal = 'PQC'",
+        resultClass = Flight.class)
 public class Flight {
+    public static final String FIND_FLIGHT_HAS_ARRIVAL_TERMINAL_IS_PQC = "Flight.findFlightHasArrivalTerminalIsPqc";
     @Id
     private String id;
 
