@@ -1,0 +1,130 @@
+------------------------------------------------------------------------------------------------------------------------------
+
+The use of this guide is reducing the miserable of my life and prevent me from jumping out of the window while testing api :)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+1. Run the SellingBook app on IntelliJ
+
+2. Copy all the scripts from sellingBook, past and run it in Pgadmin
+
+3.
+
+
+---------------------------------------
+TEST PUBLISHER API
+---------------------------------------
+.GetAll     -- ok
+
+.GetById    -- ok
+
+.DeleteById --> delete from table ebook first --> to delete ebook, delete category_ebook_relation table at the very first :) -- ok
+publisher "Algonquin" _ id = 6
+ebook "Educated" _ id = 10008 is published by Algonquin
+category_ebook_relation _ id = 8 has "Educated" ebook.
+
+.Update     -- ok
+update the publisher Dudurn has id = 2, update the address from 'CA' to 'CALIFORNIA'
+
+.Post       -- ok
+create Kirby Press publisher to the DB
+{
+    "name": "Kirby Press",
+    "phone": "9412468257",
+    "address": "Vietnam",
+    "email": "Kirby@gmail.com"
+}
+
+
+---------------------------------------
+TEST EBOOK API
+---------------------------------------
+.GetAll     -- ok
+
+.GetById    -- ok
+
+.Update		-- ok
+--> update Ebook "Cloud Cuckoo Land" _ id = 10001, provide publisher _ id in the request
+
+.Delete     -- ok
+--> delete ebook_id = 10003
+--> delete in category_ebook_relation first id = 3
+
+.Post       -- ok
+{
+        "title": "Head first Java",
+        "page": 670,
+        "rating": 4.8,
+        "introduction": "Between Moore's law and the notion of 'Internet time', we're constantly being bombarded with more and more information--most of it in the form of disorganized data. Turning this information into useful knowledge is getting harder and harder to do, and it takes time that we just don't have.",
+        "purchased": true,
+        "viewLinkStatus": "somelink",
+        "publisherId": 10
+}
+
+
+---------------------------------------
+TEST Author API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+
+.Update     -- ok
+
+.Post       -- ok
+{
+    "dob": "1955-05-07",
+    "address": "Quang Nam",
+    "gender": "MALE",
+    "firstName": "Nguyen",
+    "lastName": "Anh",
+    "email": "nguyenhatanh07@gmail.com",
+    "phone": "909305042",
+    "nationality": "Vietnam"
+}
+
+
+---------------------------------------
+TEST Category API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+--> delete category id = 13
+--> delete Category_ebook_relation first id = 7
+
+.Update     -- ok
+--> update category id = 12 from "COMIC" to "COMICAL"
+
+.Post       -- ok
+{
+    "name": "MADEUP_CATEGORY",
+    "numberOfBooks": null
+}
+
+
+---------------------------------------
+TEST Category_ebook_relation API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- testing
+--> delete category_ebook_relation has id = 1
+
+.Update     -- ok
+--> update category_ebook_relation has id = 5
+--> ebook 'the wind-up bird chronicle' id = 10005
+--> category 'FANTASY' id = 1
+{
+    "ebookId": 10005,
+    "categoryId": 1
+}
+
+.Delete     -- ok
