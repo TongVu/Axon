@@ -64,7 +64,7 @@ TEST EBOOK API
 
 
 ---------------------------------------
-TEST Author API
+TEST AUTHOR API
 ---------------------------------------
 .Get all    -- ok
 
@@ -88,7 +88,7 @@ TEST Author API
 
 
 ---------------------------------------
-TEST Category API
+TEST CATEGORY API
 ---------------------------------------
 .Get all    -- ok
 
@@ -115,7 +115,7 @@ TEST Category_ebook_relation API
 
 .GetById    -- ok
 
-.Delete     -- testing
+.Delete     -- ok
 --> delete category_ebook_relation has id = 1
 
 .Update     -- ok
@@ -127,4 +127,206 @@ TEST Category_ebook_relation API
     "categoryId": 1
 }
 
+.Create     -- ok
+
+
+---------------------------------------
+TEST Ebook_author_relation API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
 .Delete     -- ok
+
+.Put	    -- ok
+--> create another author from author api
+-- this author has id = 9
+{
+    "dob": "1955-05-07",
+    "address": "Quang Nam",
+    "gender": "MALE",
+    "firstName": "Nguyen",
+    "lastName": "Anh",
+    "email": "nguyenhatanh07@gmail.com",
+    "phone": "909305042",
+    "nationality": "Vietnam"
+}
+--> ebook 'The Diaries of Adam and Eve' _ id = 10010
+--> update ebook_author_relation _ id = 10
+-- updated ebook_author_relation
+{
+    "ebookId": "10010",
+    "authorId": "9"
+}
+
+.Post	    -- ok
+-- create another the book _ id = 1
+{
+        "title": "The Alchemist",
+        "page": 163,
+        "rating": 4.6,
+        "introduction": "The Alchemist is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it became a widely translated international bestseller.",
+        "purchased": true,
+        "viewLinkStatus": "somelink",
+        "publisherId": 5
+}
+
+-- create another the author _ id = 8
+{
+    "dob": "1947-08-24",
+    "address": "Rio de Janeiro, Brazil",
+    "gender": "MALE",
+    "firstName": "Paulo",
+    "lastName": "Coelho",
+    "email": "paul_coelho@gmail.com",
+    "phone": "0984641381",
+    "nationality": "Brazilian"
+}
+
+-- create new ebook_author_relation
+{
+    "ebookId": 1,
+    "authorId": 8
+}
+
+---------------------------------------
+TEST ACCOUNT API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+
+.Put	    -- ok
+
+.Post       -- ok
+{
+    "firstName": "Abhinav",
+    "lastName": "Asthana",
+    "dob": "1985-03-03",
+    "gender": "MALE",
+    "email": "abhinav_asthana@gmai.com",
+    "phone": "0934155888",
+    "address": "Bengaluru, India"
+}
+
+---------------------------------------
+TEST CREDIT_CARD API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+
+.Put	    -- ok
+
+.Post       -- ok
+{
+    "cardNumber": 100013,
+    "expiredDate": "2029-01-19",
+    "balance": 12000,
+    "accountId": "1"
+}
+
+---------------------------------------
+TEST Comment_ebook_relation API
+---------------------------------------
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+
+.Put        -- ok
+
+.Post       -- ok
+-- create ebook
+{
+        "title": "The Alchemist",
+        "page": 163,
+        "rating": 4.6,
+        "introduction": "The Alchemist is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it became a widely translated international bestseller.",
+        "purchased": true,
+        "viewLinkStatus": "somelink",
+        "publisherId": 5
+}
+-- create comment
+{
+    "commentContent": "This book inspires me",
+    "bookRating": 4,
+    "commentUpvote": 0,
+    "date": "2021-02-20",
+    "accountId": 1
+}
+-- create comment_ebook_relation
+{
+    "commentId": 11,
+    "ebookId": 1
+}
+
+---------------------------------------
+TEST Invoice API
+---------------------------------------
+
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+
+.Put        -- ok
+{
+    "invoiceDate": "2020-02-21",
+    "quantity": 2,
+    "pay": true,
+    "totalPayment": 120.0,
+    "creditCardId": 2,
+    "accountId": 1
+}
+
+.Post       -- ok
+-- create another credit card _ id = 13
+{
+    "cardNumber": 100013,
+    "expiredDate": "2029-01-19",
+    "balance": 12000,
+    "accountId": "1"
+}
+-- create invoice
+{
+        "invoiceDate": "2022-06-14",
+        "quantity": 1,
+        "totalPayment": 86.0,
+        "pay": true,
+        "creditCardId": 13,
+        "accountId": 1
+        
+}
+
+---------------------------------------
+TEST InvoiceDetail API
+---------------------------------------
+
+.Get all    -- ok
+
+.GetById    -- ok
+
+.Delete     -- ok
+
+.Put        -- ok
+{
+    "dateAdded": "2019-04-21",
+    "ebookPrice": 20,
+    "invoiceId": 2,
+    "ebookId" : 10007
+}
+.Post       -- ok
+{
+    "dateAdded": "2019-04-21",
+    "ebookPrice": 20,
+    "invoiceId": 2,
+    "ebookId" : 10003
+}
