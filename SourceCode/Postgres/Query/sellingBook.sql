@@ -45,6 +45,7 @@ INSERT INTO author(
             email,
             phone,
             nationality)
+<<<<<<< HEAD
     VALUES 	( '1972-10-27', 'American'     , 'MALE'  , 'Anthony', 'Doerr'   , 'anthonydoerr@gmail.com' , 0909236237, 'American'),
 			( '1939-04-15', 'London'       , 'MALE'  , 'Jeffrey', 'Archer'  , 'jeffreyarcher@gmail.com', 0909274942, 'English'),
 			( '1948-01-12', 'Tokyo'        , 'MALE'  , 'Haruki' , 'Murakami', 'hiramurakami@gmail.com' , 0909777250, 'Japanese'),
@@ -229,3 +230,4 @@ VALUES  ('2020-02-01', 18, 10001, 1),
 		('2020-11-27', 40, 10007, 8),
 		('2019-05-25', 35, 10008, 9),
 		('2020-11-27', 30, 10009, 9);
+
