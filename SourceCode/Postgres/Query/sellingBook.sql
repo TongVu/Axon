@@ -45,14 +45,13 @@ INSERT INTO author(
             email,
             phone,
             nationality)
-<<<<<<< HEAD
-    VALUES 	( '1972-10-27', 'American'     , 'MALE'  , 'Anthony', 'Doerr'   , 'anthonydoerr@gmail.com' , 0909236237, 'American'),
-			( '1939-04-15', 'London'       , 'MALE'  , 'Jeffrey', 'Archer'  , 'jeffreyarcher@gmail.com', 0909274942, 'English'),
-			( '1948-01-12', 'Tokyo'        , 'MALE'  , 'Haruki' , 'Murakami', 'hiramurakami@gmail.com' , 0909777250, 'Japanese'),
-			( '1958-03-20', 'New Hampshire', 'FEMALE', 'Mary'   , 'Roach'   , 'maryroach@gmail.com'    , 0909555537, 'American'),
-			( '1972-10-27', 'Idaho'        , 'FEMALE', 'Tara'   , 'Westover', 'tarawestover@gmail.com' , 0918394729, 'American'),
-			( '1926-12-13', 'Michigan'     , 'MALE'  , 'Raymond', 'Murphy'  , 'raymondmurphy@gmail.com', 0943218590, 'American'),
-			( '1834-11-30', 'Missouri'     , 'MALE'  , 'Mark'   , 'Twain'   , 'marktwain@gmail.com'    , 0909923626, 'American');
+VALUES 	( '1972-10-27', 'America'      , 'MALE'  , 'Anthony', 'Doerr'   , 'anthonydoerr@gmail.com' , 0909236237, 'American'),
+		( '1939-04-15', 'London'       , 'MALE'  , 'Jeffrey', 'Archer'  , 'jeffreyarcher@gmail.com', 0909274942, 'British' ),
+		( '1948-01-12', 'Tokyo'        , 'MALE'  , 'Haruki' , 'Murakami', 'hiramurakami@gmail.com' , 0909777250, 'Japanese'),
+		( '1958-03-20', 'New Hampshire', 'FEMALE', 'Mary'   , 'Roach'   , 'maryroach@gmail.com'    , 0909555537, 'American'),
+		( '1972-10-27', 'Idaho'        , 'FEMALE', 'Tara'   , 'Westover', 'tarawestover@gmail.com' , 0918394729, 'American'),
+		( '1926-12-13', 'Michigan'     , 'MALE'  , 'Raymond', 'Murphy'  , 'raymondmurphy@gmail.com', 0943218590, 'American'),
+		( '1834-11-30', 'Missouri'     , 'MALE'  , 'Mark'   , 'Twain'   , 'marktwain@gmail.com'    , 0909923626, 'American');
 
 
 

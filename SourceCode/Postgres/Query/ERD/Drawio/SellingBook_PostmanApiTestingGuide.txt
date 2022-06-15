@@ -1,28 +1,20 @@
-------------------------------------------------------------------------------------------------------------------------------
-
-The use of this guide is reducing the miserable of my life and prevent me from jumping out of the window while testing api :)
-
-------------------------------------------------------------------------------------------------------------------------------
-
-
-1. Run the SellingBook app on IntelliJ
-
-2. Copy all the scripts from sellingBook, past and run it in Pgadmin
-
-3.
-
-
 ---------------------------------------
 TEST PUBLISHER API
 ---------------------------------------
+
 .GetAll     -- ok
 
 .GetById    -- ok
 
-.DeleteById --> delete from table ebook first --> to delete ebook, delete category_ebook_relation table at the very first :) -- ok
-publisher "Algonquin" _ id = 6
-ebook "Educated" _ id = 10008 is published by Algonquin
-category_ebook_relation _ id = 8 has "Educated" ebook.
+.DeleteById -- ok
+publisher "Algonquin" _ id = 6 
+--> to delete ebook, 
+	1.delete category_ebook_relation _ id = 8
+	2.comment_ebook_relation _ id = 5
+	3.ebook_author_relation _ id = 8
+	4.InvoiceDetail _ id= 9
+	5.ebook "Educated" _ id = 10008
+
 
 .Update     -- ok
 update the publisher Dudurn has id = 2, update the address from 'CA' to 'CALIFORNIA'
@@ -37,9 +29,13 @@ create Kirby Press publisher to the DB
 }
 
 
+
+
+
 ---------------------------------------
 TEST EBOOK API
 ---------------------------------------
+
 .GetAll     -- ok
 
 .GetById    -- ok
@@ -63,9 +59,13 @@ TEST EBOOK API
 }
 
 
+
+
+
 ---------------------------------------
 TEST AUTHOR API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -87,9 +87,13 @@ TEST AUTHOR API
 }
 
 
+
+
+
 ---------------------------------------
 TEST CATEGORY API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -108,9 +112,13 @@ TEST CATEGORY API
 }
 
 
+
+
+
 ---------------------------------------
 TEST Category_ebook_relation API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -130,9 +138,13 @@ TEST Category_ebook_relation API
 .Create     -- ok
 
 
+
+
+
 ---------------------------------------
 TEST Ebook_author_relation API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -190,9 +202,14 @@ TEST Ebook_author_relation API
     "authorId": 8
 }
 
+
+
+
+
 ---------------------------------------
 TEST ACCOUNT API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -212,9 +229,14 @@ TEST ACCOUNT API
     "address": "Bengaluru, India"
 }
 
+
+
+
+
 ---------------------------------------
 TEST CREDIT_CARD API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -231,9 +253,14 @@ TEST CREDIT_CARD API
     "accountId": "1"
 }
 
+
+
+
+
 ---------------------------------------
 TEST Comment_ebook_relation API
 ---------------------------------------
+
 .Get all    -- ok
 
 .GetById    -- ok
@@ -266,6 +293,10 @@ TEST Comment_ebook_relation API
     "commentId": 11,
     "ebookId": 1
 }
+
+
+
+
 
 ---------------------------------------
 TEST Invoice API
@@ -305,6 +336,10 @@ TEST Invoice API
         "accountId": 1
         
 }
+
+
+
+
 
 ---------------------------------------
 TEST InvoiceDetail API
