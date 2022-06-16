@@ -18,7 +18,9 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Data
-public class UserDetailsImpl implements UserDetails {
+/*
+ */
+public class UserDetailsImpl implements UserDetails {  // UserDetails from org.springframework.security.core.userdetails
 
     private Integer id;
 

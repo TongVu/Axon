@@ -214,6 +214,7 @@ VALUES  ('2020-02-21', true , 2, 120, 1, 1),
 		('2017-06-29', false, 0,   0, 1, 1);
 		
 		
+		
 INSERT INTO invoice_detail(
 	date_added, 
 	ebook_price, 
