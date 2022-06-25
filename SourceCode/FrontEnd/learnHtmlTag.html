@@ -26,10 +26,28 @@
         padding: 15px;
         width: fit-content;
         display: block;
+        transition: ease-in-out, width 0.3s ease-in-out;
+      }
+      .submit_btn:focus {
+        width: 350px;
+        color: bisque;
       }
 
       ul li {
         list-style-type: circle;
+      }
+      .test_focus {
+        margin: 15px;
+        background-color: skyblue;
+        color: seashell;
+        border: 3px solid whitesmoke 4px;
+        padding: 15px;
+        width: 150;
+        display: inline-block;
+        transition: ease-in-out, width 0.3s ease-in-out;
+      }
+      .test_focus:focus {
+        width: 350px;
       }
     </style>
   </head>
@@ -74,5 +92,6 @@
       <li>fdjlsakfjdsakl</li>
       <li>slfkdjsalfkds</li>
     </ol>
+    <input class="test_focus" value="input" />
   </body>
 </html>
