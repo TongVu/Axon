@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    height: 1800px;
+}
+.box{
+    border: 2px;
+    border-radius: 8px;
+    width: 180px;
+    height: 120px;
+}
+#box1{
+    position: absolute;
+    background-color: sandybrown;
+    top: 250px;
+    left: 320px;
+
+    width: 280px;
+    height: 220px;
+}
+#box2{
+    background-color: slategrey;
+    width: 120px;
+    height: 120px;
+}
+#box3{
+    position: absolute;
+    background-color: salmon;
+    width: 60px;
+    height: 60px;
+    left: 10px;
+    top: 110px;
+}
+#box4{
+    position: sticky;
+    background-color: turquoise;
+    top : 20px;
+}

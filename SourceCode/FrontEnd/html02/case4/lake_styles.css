@@ -1,0 +1,100 @@
+﻿@charset "utf-8";
+
+@font-face {
+   font-family: Champagne;
+   src: url('./cac_champagne.woff'),
+   url('./cac_champagne.ttf');
+}
+
+@font-face {
+   font-family: Dobkin;
+   src: url('./DobkinPlain.woff'),
+   url('./DobkinPlain.ttf');
+}
+html{
+   background-color: burlywood;
+}
+
+header nav{
+   background-color: blueviolet;
+}
+header nav li a{
+   text-decoration: none;
+   color: ghostwhite;
+   background-color: blueviolet;
+   margin: 10px 0;
+}
+
+#leftcol{
+   background-color: antiquewhite;
+}
+
+#leftcol h1{
+   font-family:'Dobkin', cursive;;
+   font-size: 3em;
+   margin: 10px 15px;
+}
+
+#leftcol p{
+   margin: 15px;
+
+}
+aside h1{
+   text-align: center;
+   font-size: 0.8em;
+}
+
+section aside{
+   padding: 10px 15px 15px 20px;
+   border-radius: 4px;
+}
+
+section aside:first-of-type{
+   background-color: salmon;
+}
+section aside:nth-of-type(2){
+   background-color: wheat;
+}
+
+#rightcol{
+   background-color: hsla(273, 100%, 75%, 1);
+   padding: 20px 40px 24px;
+   margin-right: 0px;
+   float: right;
+}
+
+#rightcol h2{
+   font-family:'Dobkin', cursive;;
+   font-size: 2.5em;
+}
+#rightcol nav ul {
+   list-style-type: none;
+}
+#rightcol nav ul li a{
+   text-decoration: none;
+   color: silver;
+}
+blockquote::before{
+content: open-quote;
+font-size: 3em;
+}
+
+blockquote{
+  background: #f9f9f9;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  color: mediumslateblue;
+   background-color: hsla(273, 100%, 75%, 1);
+   quotes:  "“" "”";
+}
+
+blockquote::after{
+content: close-quote;
+font-size: 3em;
+}
+
+footer{
+   background-color: slategray;
+   color: aliceblue;
+   text-align: center;
+}

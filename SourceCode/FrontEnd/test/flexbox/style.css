@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background-color: slategray;
+}
+.box{
+    border-radius: 8px;
+}
+
+.flex{
+    background-color: seashell;
+    height: 500px;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px 30px;
+}
+
+#child1{
+    border: 2px solid turquoise;
+    width: 250px;
+    height: 180px;
+    background-color: turquoise;
+    transition: width 0.3s ease-in-out, background-color 0.3s;
+}
+
+#child1:hover{
+    border: 2px solid goldenrod;
+    width: 380px;
+    background-color: goldenrod;
+}
+
+#child2{
+    border: 2px solid magenta;
+    width: 60px;
+    height: 80px;
+    background-color: magenta;
+}
+
+#child3{
+    border: 2px solid seagreen;
+    width: 200px;
+    height: 350px;
+    background-color: seagreen;
+}
+
+#child4{
+    border: 2px solid salmon;
+    width: 200px;
+    height: 200px;
+    background-color: salmon;;
+}
+
+#child5{
+    border: 2px solid olive;
+    width: 30px;
+    height: 280px;
+    background-color: olive;
+}

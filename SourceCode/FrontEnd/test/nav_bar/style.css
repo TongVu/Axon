@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  background-color: slategray;
+}
+
+body {
+  height: 1800px;
+}
+body nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+body nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+body nav ul a {
+  text-decoration: none;
+  color: antiquewhite;
+  display: inline-block;
+  height: 80px;
+  width: 120px;
+  border-radius: 8px;
+  background-color: salmon;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+body nav ul a:hover {
+  background-color: bisque;
+  color: slategrey;
+}/*# sourceMappingURL=style.css.map */
