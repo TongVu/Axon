@@ -1,0 +1,106 @@
+﻿@charset "utf-8";
+/*
+   New Perspectives on HTML5 and CSS3, 7th Edition
+   Tutorial 2
+   Case Problem 2
+   
+   Bike the Mountains Tour Style Sheet
+   Author:
+   Date:   
+   
+   Filename: mw_styles.css
+
+*/
+
+
+/* Structural Styles */
+html {
+   background-color: rgb(173, 189, 227);
+}
+
+body {
+   background-color: rgb(227, 210, 173);
+   font-family: Century Gothic, sans-serif;
+}
+
+footer {
+   background-color: rgb(208, 184, 109);
+   padding: 5px 0px;
+}
+
+address {
+   font-size: 0.9em;
+   font-style: normal;
+   text-align: center;
+   padding: 10px 0px;
+}
+/* Heading Styles */
+h1, h2 {
+   font-weight: normal;
+}
+
+
+/* Navigation Styles */
+nav > ul {
+   line-height: 2em;
+   font-size: 0.9em;
+   list-style-type: none;
+}
+
+nav > ul > li > a:link,
+nav > ul > li > a:visited {
+   text-decoration: none;
+   color: rgb(43,59,125);
+}
+
+nav > ul > li > a:active,
+nav > ul > li > a:hover {
+   color: rgb(212,35,35);
+}
+
+
+
+/* Article Styles */
+#tour_summary header h1 {
+   font-size: 2.2em;
+   letter-spacing: 0.2em;
+}
+
+#tour_summary p {
+   font-size: 1.1em;
+}
+
+#tour_summary p:first-of-type::first-line {
+   font-size: 1.2em;
+   text-transform: uppercase;
+}
+
+/* Aside Styles */
+#tour_itinerary h1 {
+   font-size: 1.2em;
+}
+
+#tour_itinerary h2 {
+   font-size: 0.8em;
+}
+
+#tour_itinerary h2:nth-of-type(3n),
+#tour_itinerary p:nth-of-type(3n)
+{
+   color: rgb(79,91,40);
+}
+
+#tour_itinerary h2:nth-of-type(2n),
+#tour_itinerary p:nth-of-type(2n)
+{
+   color: rgb(81,95,175);
+}
+/* Blockquote Styles */
+blockquote {
+   background-color: rgb(173, 189, 227);
+   color: rgba(255,255,255,0.65);
+}
+
+blockquote > p {
+   padding: 2.5px 10px;
+}

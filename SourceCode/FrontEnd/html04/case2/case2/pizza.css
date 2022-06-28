@@ -1,0 +1,162 @@
+c* {
+   padding: 0;
+   margin: 0;
+}
+
+header, section, aside, footer, nav {
+   display: block;
+}
+
+body {
+   background-color: red;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#container {
+   width: 1000px;
+   margin: 0 auto;
+   border: 1px solid black;
+   background-color: whitesmoke;
+   background-image: url("/redbar.png");
+   background-position: top-left;
+   background
+}
+
+header {
+   background-color: white;
+   height: 100px;
+}
+
+.horizontal {
+   height: 70px;
+   width: 100%;
+   background-color: #fff;
+}
+
+.horizontal ul li{
+   background-color: #fff;
+   font-size: 16px;
+   height: 50px;
+   line-height: 50px;
+   width: 180px;
+   display: block;
+   float: left;
+   margin: 0 5px;
+   text-align: center;
+}
+
+.horizontal ul li a{
+   display: block;
+   background-color: crimson;
+   color: white;
+   border-radius: 30px 25px;
+   text-decoration: none;
+}
+.horizontal ul li a:hover{
+   background-color: rgb(255, 101, 101);
+   color: black;
+}
+
+.vertical {
+   float:left;
+   width: 200px;
+}
+
+.vertical ul{
+   list-style-type: none;
+}
+
+.vertical ul li a{
+   margin: 20px 0 0 10px;
+   text-decoration: none;
+   color: ghostwhite;
+}
+
+.vertical ul li a:hover {
+   color: black;
+}
+
+#main {
+   background-color: rgb(255,211,211);
+   float: left;
+   width: 600px;
+}
+
+#main > p {
+   font-size: 20px;
+   margin: 15px;
+}
+
+#main img {
+   float: right;
+   margin: 15px;
+   width: 350px;
+   border-radius: 0 0 0 350px;
+}
+
+.coupon {
+   border: 5px dashed black;
+   float: left;
+   width: 170px;
+   height: 150px;
+   margin: 20px 10px;
+   background-image: url('/notice.png'), url('/slice.png');
+   background-repeat: no-repeat;
+   background-position: bottom, center;
+}
+
+
+
+.coupon h1 {
+   color: whitesmoke;
+   background-color: rgb(192,0,0);
+   font-size: 16px;
+   letter-spacing: 2px;
+   text-align: center;
+   height: 25px;
+   text-transform: uppercase;
+}
+
+.coupon p {
+   font-size: 14px;
+   text-align: center;
+   margin: 5px;
+}
+
+aside{
+   float: left;
+   width: 200px;
+}
+
+aside h1{
+   color: rgb(192,0,0);
+   font-size: 20px;
+   letter-spacing: 2px;
+   font-weight: normal;
+   text-align: center;
+}
+
+aside ul li{
+  background-color: rgb(255, 135, 135);
+  border-radius: 5px;
+  color: black;
+  list-style-type: none;
+  margin: 10px;
+  padding: 5px;
+}
+
+footer{
+   clear: both;
+   margin-left: 200px;
+}
+
+footer address{
+   border: 1px solid crimson;
+   color: red;
+   font-size: 10px;
+   font-style: normal;
+   text-align: center;
+   margin-top: 25px;
+   padding-bottom: 20px;
+}
+

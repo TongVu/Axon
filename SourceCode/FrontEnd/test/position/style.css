@@ -13,11 +13,12 @@
 #box1{
     position: absolute;
     background-color: sandybrown;
-    top: 250px;
-    left: 320px;
-
     width: 280px;
     height: 220px;
+
+    top: 350px;
+    left: 20px;
+
 }
 #box2{
     background-color: slategrey;
@@ -25,7 +26,7 @@
     height: 120px;
 }
 #box3{
-    position: absolute;
+    position: relative;
     background-color: salmon;
     width: 60px;
     height: 60px;
