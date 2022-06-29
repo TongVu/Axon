@@ -1,0 +1,107 @@
+.domeSpecs {
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  float: right;
+  border-collapse: collapse;
+  background-image: url(./tableback.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.domeSpecs td {
+  padding: 0 5px;
+}
+
+caption {
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+thead tr{
+    border: 2px solid gray bottom;
+    background-image: url(./top.jpg);
+    background-repeat: repeat-x;
+
+    height: 40px;
+}
+
+thead tr th{
+    padding: 0 5px;
+    letter-spacing: 2px;
+}
+
+thead tr th:first-of-type{
+background-image: url(./topleft.jpg);
+background-position: top left;
+background-repeat: no-repeat;
+}
+
+thead tr th:last-of-type{
+background-image: url(./topright.jpg);
+background-position: top right;
+background-repeat: no-repeat;
+}
+
+tfoot {
+    border: 2px solid grey top;
+    background-image: url(./bottom.jpg);
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+tfoot tr{
+    height: 40px;
+}
+
+tfoot tr td{
+    text-align: center;
+}
+
+tfoot tr td:first-of-type{
+    background-image: url(./bottomleft.jpg);
+    background-repeat: repeat-y;
+    background-position: bottom left;
+}
+
+tfoot tr td:last-of-type{
+    background-image: url(./bottomright.jpg);
+    background-repeat: repeat-y;
+    background-position: bottom right;
+}
+
+tbody tr{
+    height: 50px;
+    border: 1px dotted grey bottom;
+}
+
+tbody tr td:first-of-type{
+    background-image: url(./left.jpg);
+    background-repeat: repeat-y;
+    background-position: top left;
+}
+
+tbody tr td:last-of-type{
+    background-image: url(./right.jpg);
+    background-repeat: repeat-y;
+    background-position: top right;
+    text-align: right;
+}
+
+table tr:nth-of-type(even){
+    background: rgb(152, 228,212);
+    opacity: 60%;
+}
+
+.firstColumn{
+    width: 22%;
+}
+.middleColumn{
+    width: 28%;
+}
+.lastColumn{
+    width: 22%;
+}

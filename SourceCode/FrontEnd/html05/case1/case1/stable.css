@@ -1,0 +1,50 @@
+.greenBox {
+  background-color: seagreen;
+}
+.goldBox {
+  background-color: bisque;
+}
+
+
+
+.spuzzle,
+.subTable {
+    border-collapse: collapse;
+}
+
+.spuzzle td{
+    border: 5px solid gray;
+}
+
+.spuzzle thead th {
+    vertical-align: bottom;
+
+}
+.spuzzle thead th,
+.spuzzle tbody th {
+    font-size: 8px;
+    color: gray;
+    height: 40px;
+}
+
+.subTable td {
+    font-size: 20px;
+    color: skyblue;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+}
+
+.goldBox td{
+    background-image: url('gold.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.greenBox td{
+    background-image: url('/green.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
