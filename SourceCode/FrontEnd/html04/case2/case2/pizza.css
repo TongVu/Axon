@@ -1,4 +1,4 @@
-c* {
+* {
    padding: 0;
    margin: 0;
 }
@@ -19,7 +19,7 @@ body {
    background-color: whitesmoke;
    background-image: url("/redbar.png");
    background-position: top-left;
-   background
+   background-repeat: repeat-y;
 }
 
 header {
@@ -52,6 +52,7 @@ header {
    border-radius: 30px 25px;
    text-decoration: none;
 }
+
 .horizontal ul li a:hover{
    background-color: rgb(255, 101, 101);
    color: black;
@@ -60,16 +61,23 @@ header {
 .vertical {
    float:left;
    width: 200px;
+   background-color: crimson;
 }
 
 .vertical ul{
    list-style-type: none;
 }
 
+
 .vertical ul li a{
-   margin: 20px 0 0 10px;
    text-decoration: none;
    color: ghostwhite;
+   /* we haven't put this in */
+   text-indent: 20px;
+}
+/* The margin's only applied for li tag, not a tag */
+.vertical ul li{
+   margin: 20px;
 }
 
 .vertical ul li a:hover {
@@ -100,12 +108,10 @@ header {
    width: 170px;
    height: 150px;
    margin: 20px 10px;
-   background-image: url('/notice.png'), url('/slice.png');
+   background-image: url('./notice.png'), url('./slice.png');
    background-repeat: no-repeat;
-   background-position: bottom, center;
+   background-position: right bottom, center;
 }
-
-
 
 .coupon h1 {
    color: whitesmoke;
@@ -114,7 +120,8 @@ header {
    letter-spacing: 2px;
    text-align: center;
    height: 25px;
-   text-transform: uppercase;
+   /* we did the wrong thing here, u set it to upper-case or something*/
+   font-variant: small-caps;
 }
 
 .coupon p {
@@ -137,7 +144,7 @@ aside h1{
 }
 
 aside ul li{
-  background-color: rgb(255, 135, 135);
+  background-color: rgb(255,135,135);
   border-radius: 5px;
   color: black;
   list-style-type: none;
@@ -151,7 +158,7 @@ footer{
 }
 
 footer address{
-   border: 1px solid crimson;
+   border: 1px solid rgb(214, 46, 80);
    color: red;
    font-size: 10px;
    font-style: normal;
