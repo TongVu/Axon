@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./mill.css" type="text/css" />
+    <link rel="stylesheet" href="./oform.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+  </head>
+
+  <body>
+    <header>
+      <img src="./mclogo.jpg" alt="logo" />
+    </header>
+
+    <body>
+      <form
+        action="http://www.mil_computers.com/orders/process.cgi."
+        name="cOrder"
+        method="POST"
+      >
+        <!-- customer info -->
+        <fieldset id="customerinfo">
+          <label for="fName">First name</label>
+          <input
+            type="text"
+            id="fName"
+            placeholder="first name"
+            required="required"
+          />
+
+          <label for="lName">Last name</label>
+          <input
+            type="text"
+            id="lName"
+            placeholder="last name"
+            required="required"
+          />
+
+          <label for="street">Street</label>
+          <input
+            type="text"
+            id="street"
+            placeholder="street"
+            required="required"
+          />
+
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="city" required="required" />
+
+          <label for="state">State</label>
+          <input
+            required="required"
+            type="text"
+            id="state"
+            placeholder="enter state here"
+          />
+
+          <label for="zip">Zip</label
+          ><!-- REGEX HERE -->
+          <input
+            required="required"
+            type="phone"
+            id="phone"
+            placeholder="enter your phone number in here"
+            pattern="^\d{5}(\-\d{4})?$"
+          />
+
+          <label for="phone" pattern="">Phone</label
+          ><!-- REGEX HERE -->
+          <input
+            required="required"
+            type="phone"
+            id="phone"
+            placeholder="enter your phone number in here"
+            pattern="^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$"
+          />
+        </fieldset>
+
+        <!-- specs -->
+        <fieldset id="specs">
+          <!-- Processor speed  -->
+          <label for="pspeed">Processor speed</label>
+          <select id="pspeed" name="processor speed">
+            <option value="3.2ghz" name="pspeed">3.2 GHz</option>
+            <option value="4ghz" name="pspeed">4 GHz</option>
+            <option value="5.2ghz" name="pspeed">5.2 GHz</option>
+          </select>
+
+          <!--  Memory -->
+          <label for="mem">Memory</label>
+          <select id="mem" name="memory">
+            <option value="1GB" name="memory">1GB</option>
+            <option value="2GB" name="memory">2GB</option>
+            <option value="4GB" name="memory">4GB</option>
+            <option value="8GB" name="memory">8GB</option>
+          </select>
+          <!--  Monitor -->
+          <label for="monitor">Monitor</label>
+          <select id="monitor" name="monitor">
+            <option value="15" name="15">15"</option>
+            <option value="17" name="17">17"</option>
+            <option value="19" name="19">19"</option>
+            <option value="21" name="21">21"</option>
+          </select>
+          <!--  Hard Drive -->
+          <label for="harddrive">Hard Drive</label>
+          <select id="harddrive" name="harddrive">
+            <option value="240GB" name="240GB">240GB</option>
+            <option value="500GB" name="500GB">500GB</option>
+            <option value="750GB" name="750GB">750GB</option>
+            <option value="1TB" name="1TB">1TB</option>
+          </select>
+
+          <!--  Checkbox -->
+          <label for="warranty" class="inline"
+            >24-month extended warranty</label
+          >
+          <input type="checkbox" name="warranty" id="warranty" />
+
+          <!--  DVD Burner -->
+          <label for="dvdburner" class="optional">DVD Burner</label>
+          <label for="dvdburner_yes">
+            <input
+              type="radio"
+              name="dvdburner"
+              id="dvdburner_yes"
+              value="YES"
+            />YES
+          </label>
+          <label for="dvdburner_no">
+            <input type="radio" name="dvdburner" id="dvdburner_no" value="NO" />
+            NO
+          </label>
+          <!--  Tuner Card -->
+          <label for="tunercard" class="optional">Tuner Card</label>
+          <label for="tunercard_yes">
+            <input
+              type="radio"
+              name="tunercard"
+              id="tunercard_yes"
+              value="YES"
+            />YES
+          </label>
+
+          <label for="tunercard_no">
+            <input type="radio" name="tunercard" id="tunercard_no" value="NO" />
+            NO
+          </label>
+          <!--  Media Card Reader -->
+          <label for="mediacardreader" class="optional"
+            >Media Card Reader</label
+          >
+          <label for="mediacardreader_yes">
+            <input
+              type="radio"
+              name="mediacardreader"
+              id="mediacardreader_yes"
+              value="YES"
+            />YES
+          </label>
+          <label for="mediacardreader_no">
+            <input
+              type="radio"
+              name="mediacardreader"
+              id="mediacardreader_no"
+              value="NO"
+            />
+            NO
+          </label>
+          <!--  Textarea -->
+          <textarea
+            name="commentoraddtionalinfo"
+            id="comment"
+            cols="30"
+            rows="10"
+            placeholder="addtional information/ comments"
+          ></textarea>
+        </fieldset>
+        <div id="btn_flex">
+          <button type="submit" id="submit">Send Order</button>
+          <button type="reset" id="cancel">Cancel Order</button>
+        </div>
+        <button type="submit" id="contact">Contact Me</button>
+      </form>
+    </body>
+
+    <footer></footer>
+  </body>
+</html>
