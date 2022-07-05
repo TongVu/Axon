@@ -1,0 +1,42 @@
+ /*
+    #e4e4e4
+    #d1cdcd
+    #782222
+    #f99d1dj
+    #dddddd
+*/ 
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+}
+
+.img-box{
+    width: 180px;
+    height: 180px;
+    background-color: slategray;
+    border: 8px solid rgb(138, 4, 31);
+    border-radius: 100%;
+}
+
+.info-box,
+.card{
+    padding: 10px 15px;
+}
+
+.card-content,
+.card-time{
+    display: inline-block;
+}
+.card-content{
+    width: 70%;
+}
+.card-flex{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
