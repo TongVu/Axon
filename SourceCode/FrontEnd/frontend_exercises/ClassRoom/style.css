@@ -1,0 +1,17 @@
+.tables{
+    width: 100vw;
+text-align: center;
+}
+
+.table{
+    display: inline-block;
+    background-color: turquoise;
+    color: snow;
+    width: 20%;
+    height: 70px;
+    border-radius: 8px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 10px;
+    cursor: move;
+}

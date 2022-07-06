@@ -1,20 +1,19 @@
- /*
-    #e4e4e4
-    #d1cdcd
-    #782222
-    #f99d1dj
-    #dddddd
-*/ 
 *{
     box-sizing: border-box;
 }
 
 body{
     margin: 0;
-    padding: 15px;
-    width: 100%;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
 }
 
+
+.container{
+    border-radius: 8px;
+}
 
 .img-box{
     width: 180px;
@@ -35,18 +34,26 @@ body{
 .mcard{
     padding: 10px 15px;
 }
+
 .mcard{
     border: none;
-
 }
 
 .card-content,
 .card-time{
     display: inline-block;
 }
+
 .card-content{
+    font-weight: bold;
     width: 70%;
 }
+
+.card-content-normal{
+    width: 70%;
+    font-style: italic;
+}
+
 .card-flex{
     display: flex;
     flex-flow: row nowrap;
@@ -56,26 +63,55 @@ body{
 .info-box-location{
     border-bottom: 8px solid rgb(138,4,31) ;
 }
+
 .info-phone{
     padding-top: 15px;
     border-top: 8px solid rgb(138, 4, 31);
     border-width: 80%;
 }
+
 .avatar-box,
 .info-box{
     text-align: center;
 }
 
-.title{
-    text-decoration: underline;
-    text-decoration-color: #f99d1daf;
-    text-decoration-thickness: 10px;
-    text-underline-offset: 0.3px;
-    /* #e4e4e4
-    #d1cdcd
-    #782222
-    #dddddd */
+.info-github a,
+.info-github a:hover{
+    text-decoration: none;
+    color: black;
 }
+
+.title{
+    display: flex;
+    flex-direction: row nowrap;
+    justify-content: flex-start;
+} 
+
+.title a {
+    color: black;
+}
+.title span a,
+.title span a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+.title span a:hover{
+    color: turquoise;
+}
+
+.title::after{
+    display: inline-block;
+    content: " \00a0 \00a0\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0";
+    height: 15px;
+    background-color: #f99d1daf;
+    position: relative;
+    top: 20px;
+    left: -128px;
+    z-index: -1;
+}
+
+
 .info-box-icon p,
 .info-box-location p{
     display: flex;
