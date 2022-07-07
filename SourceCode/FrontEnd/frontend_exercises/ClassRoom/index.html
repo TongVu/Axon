@@ -10,6 +10,7 @@
       lang="javascript"
       src="https://cdn.sheetjs.com/xlsx-0.18.9/package/dist/xlsx.full.min.js"
     ></script>
+
     <title>Drag &amp; Drop</title>
   </head>
 
@@ -21,11 +22,10 @@
 
       <!-- AUTO MAKE TABLE FOR THE DATA -->
       <div class="tables" id="tables"></div>
-
-      <!-- IMPLEMENT DRAG AND DROP -->
     </main>
 
     <script>
+      // <!-- IMPLEMENT DRAG AND DROP -->
       function handleDragStart(e) {
         this.style.opacity = "0.8";
         dragSrcEl = this;
@@ -38,9 +38,13 @@
         this.style.opacity = "1";
 
         let items = document.getElementsByClassName("table");
-        items.forEach((item) => {
-          item.classList.remove("over");
-        });
+        try {
+          items.forEach((item) => {
+            item.classList.remove("over");
+          });
+        } catch (e) {
+          console.log(e);
+        }
       }
       function handleDragOver(e) {
         e.preventDefault();
@@ -65,54 +69,40 @@
 
         return false;
       }
+
       // LOAD AND AUTO CREATE TABLE FROM THE DATA
       async function handleFileAsync(e) {
         const file = e.target.files[0];
-        const data = await file.arrayBuffer();
+        try {
+          const data = await file.arrayBuffer();
+          const workbook = XLSX.read(data);
+          workbook.SheetNames.forEach(function (sheetName) {
+            var XL_row_object = XLSX.utils.sheet_to_row_object_array(
+              workbook.Sheets[sheetName]
+            );
 
-        const workbook = XLSX.read(data);
+            XL_row_object.forEach((Element, index) => {
+              let div = document.createElement("div");
+              div.setAttribute("class", "table");
+              // div.setAttribute("class", "over");
 
-        console.log(workbook.data);
+              div.setAttribute("id", `table${index}`);
+              div.setAttribute("draggable", true);
+              div.addEventListener("dragstart", handleDragStart);
+              div.addEventListener("dragend", handleDragEnd);
+              div.addEventListener("dragover", handleDragOver);
+              div.addEventListener("dragenter", handleDragEnter);
+              div.addEventListener("dragleave", handleDragLeave);
+              div.addEventListener("drop", handleDrop);
+              div.innerHTML = Element.NAME;
 
-        workbook.SheetNames.forEach(function (sheetName) {
-          var XL_row_object = XLSX.utils.sheet_to_row_object_array(
-            workbook.Sheets[sheetName]
-          );
-
-          XL_row_object.forEach((Element, index) => {
-            console.log(`${Element.NAME} - index: ${index}`);
-
-            let div = document.createElement("div");
-            div.setAttribute("class", "table");
-            // div.setAttribute("class", "over");
-
-            div.setAttribute("id", `table${index}`);
-            div.setAttribute("draggable", true);
-            div.addEventListener("dragstart", handleDragStart);
-            div.addEventListener("dragend", handleDragEnd);
-            div.addEventListener("dragover", handleDragOver);
-            div.addEventListener("dragenter", handleDragEnter);
-            div.addEventListener("dragleave", handleDragLeave);
-            div.addEventListener("drop", handleDrop);
-            div.innerHTML = Element.NAME;
-
-            document.getElementById("tables").append(div);
+              document.getElementById("tables").append(div);
+            });
           });
-        });
+        } catch (e) {
+          console.log(e);
+        }
       }
-
-      // DRAG START AND DRAG END EVENT TO KNOW THE STAGE OF THE EVENT WHEN DRAGGING
-      // document.addEventListener("DOMContentLoaded", (event) => {
-      //   let items = document.getElementsByClassName("table");
-      //   items.forEach(function (item) {
-      //     item.addEventListener("dragstart", handleDragStart);
-      //     item.addEventListener("dragend", handleDragEnd);
-      //     item.addEventListener("dragover", handleDragOver);
-      //     item.addEventListener("dragenter", handleDragEnter);
-      //     item.addEventListener("dragleave", handleDragLeave);
-      //     item.addEventListener("drop", handleDrop);
-      //   });
-      // });
 
       document
         .getElementById("input_dom_element")
