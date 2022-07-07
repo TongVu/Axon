@@ -4,7 +4,7 @@
 
 body{
     margin: 0;
-    padding: 0;
+    padding: 15px 0;
     width: 100vw;
     height: 100vh;
     background-color: whitesmoke;
@@ -97,20 +97,24 @@ body{
 }
 
 .title span a:hover{
-    color: turquoise;
+    color: rgb(138, 4, 31);
 }
 
-.title::after{
+.title span {
     display: inline-block;
-    content: " \00a0 \00a0\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0";
-    height: 15px;
-    background-color: #f99d1daf;
     position: relative;
-    top: 20px;
-    left: -128px;
+}
+
+.title span::after{
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    height: 0.8rem;
+    width: 100%;
+    background:#f99d1daf;
     z-index: -1;
 }
-
 
 .info-box-icon p,
 .info-box-location p{
